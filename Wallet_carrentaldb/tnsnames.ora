@@ -1,0 +1,12 @@
+carrentaldb_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-saopaulo-1.oraclecloud.com))(connect_data=(service_name=g06688fc0ffb50a_carrentaldb_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+carrentaldb_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-saopaulo-1.oraclecloud.com))(connect_data=(service_name=g06688fc0ffb50a_carrentaldb_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+carrentaldb_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-saopaulo-1.oraclecloud.com))(connect_data=(service_name=g06688fc0ffb50a_carrentaldb_low.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+carrentaldb_tp = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-saopaulo-1.oraclecloud.com))(connect_data=(service_name=g06688fc0ffb50a_carrentaldb_tp.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+carrentaldb_tpurgent = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-saopaulo-1.oraclecloud.com))(connect_data=(service_name=g06688fc0ffb50a_carrentaldb_tpurgent.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+
+
