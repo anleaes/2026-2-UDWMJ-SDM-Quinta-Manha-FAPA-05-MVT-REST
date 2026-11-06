@@ -29,6 +29,8 @@
                         markdown
                         oracledb
                         django-widget-tweaks
+                        djangorestframework
+                        djangorestframework-stubs
                         django-filter
                         django-stubs
                     ]))
