@@ -5,6 +5,7 @@
     --light-bg: #364153;
     --border: 1px solid #494b53;
     --border-radius: 5px;
+    --highlight: #4a5565;
 }
 
 @font-face {
@@ -53,9 +54,30 @@ button {
 }
 
 button:hover {
-    background-color: #4a5565;
+    background-color: var(--highlight);
 }
 
 .main-title {
     text-align: center;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    font-size: 20px;
+    text-align: left;
+}
+
+thead tr {
+    border-color: var(--highlight);
+}
+
+tr {
+    border-bottom: 1px solid var(--light-bg);
+}
+
+td, th {
+    padding-right: 15px;
+    padding-block: 15px;
 }
