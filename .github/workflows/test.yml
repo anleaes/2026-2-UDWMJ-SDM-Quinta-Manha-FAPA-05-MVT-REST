@@ -2,8 +2,22 @@ name: "Test"
 on:
     pull_request:
         branches: [main]
+        paths:
+          - "apps/**"
+          - "carrental/**"
+          - "manage.py"
+          - "flake.nix"
+          - "flake.lock"
+          - ".github/workflows/test.yml"
     push:
         branches: [main]
+        paths:
+          - "apps/core/**"
+          - "carrental/**"
+          - "manage.py"
+          - "flake.nix"
+          - "flake.lock"
+          - ".github/workflows/test.yml"
 
 jobs:
     tests:
