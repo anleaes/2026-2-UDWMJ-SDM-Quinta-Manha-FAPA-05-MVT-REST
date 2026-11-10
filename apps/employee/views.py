@@ -26,3 +26,18 @@ def list_employees(request: HttpRequest) -> HttpResponse:
         "employees" : employees,
     }
     return render(request, template_name, context)
+
+def edit_employee(request: HttpRequest, id: int) -> HttpResponse:
+    employee = get_object_or_404(Employee, id = id)
+    if request.method == "POST":
+        form = EmployeeForm(request.POST, instance = employee)
+        if form.is_valid():
+            form.save()
+            return redirect("employees:list_employees")
+
+    template_name = "employees/add_employee.html"
+    form          = EmployeeForm(instance = employee)
+    context       = {
+        "form": form
+    }
+    return render(request, template_name, context)
