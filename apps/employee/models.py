@@ -1,3 +1,5 @@
 from django.db import models
 
 # Create your models here.
+class Employee(models.Model):
+    name         = models.CharField("Nome", max_length = 50)
