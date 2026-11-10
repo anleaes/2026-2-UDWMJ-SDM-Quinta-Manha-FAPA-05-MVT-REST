@@ -9,3 +9,8 @@ class Employee(models.Model):
     approval     = models.DateField("Data de Aprovação", auto_now = False, auto_now_add = False)
     isactive     = models.BooleanField("Ativo", default = False)
 
+    class Meta:
+        verbose_name        = "Funcionário"
+        verbose_name_plural = "Funcionários"
+        ordering            = [ "id" ]
+
