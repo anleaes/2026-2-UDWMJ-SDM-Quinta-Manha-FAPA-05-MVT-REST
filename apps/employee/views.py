@@ -41,3 +41,8 @@ def edit_employee(request: HttpRequest, id: int) -> HttpResponse:
         "form": form
     }
     return render(request, template_name, context)
+
+def delete_employee(request: HttpRequest, id: int) -> HttpResponse:
+    employee = Employee.objects.get(id = id)
+    employee.delete()
+    return redirect("employees:list_employees")
