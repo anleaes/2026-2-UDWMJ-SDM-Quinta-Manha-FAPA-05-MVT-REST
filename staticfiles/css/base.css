@@ -29,6 +29,9 @@ label {
 }
 
 input {
+    font-family: Inter;
+    color: var(--main-fg);
+
     background-color: var(--hard-bg);
     border-radius: var(--border-radius);
     border: var(--border);
