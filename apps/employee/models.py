@@ -14,3 +14,5 @@ class Employee(models.Model):
         verbose_name_plural = "Funcionários"
         ordering            = [ "id" ]
 
+    def __str__(self):
+        return f"{self.name}"
