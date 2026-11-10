@@ -7,9 +7,15 @@
     --border-radius: 5px;
 }
 
+@font-face {
+    font-family: "Inter";
+    src: url("../fonts/Inter-Regular.ttf") format("truetype");
+}
+
 body {
     background-color: var(--main-bg);
     color: var(--main-fg);
+    font-family: Inter;
 }
 
 form {
