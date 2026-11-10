@@ -18,3 +18,11 @@ def add_employee(request: HttpRequest) -> HttpResponse:
         "form": form
     }
     return render(request, template_name, context)
+
+def list_employees(request: HttpRequest) -> HttpResponse:
+    template_name = "employees/list_employees.html"
+    employees     = Employee.objects.filter()
+    context = {
+        "employees" : employees,
+    }
+    return render(request, template_name, context)
