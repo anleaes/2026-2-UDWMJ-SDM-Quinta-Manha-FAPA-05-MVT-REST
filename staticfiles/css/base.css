@@ -4,8 +4,10 @@
     --hard-bg: #10141e;
     --light-bg: #364153;
     --border: 1px solid #494b53;
+    --border-bg: 1px solid #1d202a;
     --border-radius: 5px;
     --highlight: #4a5565;
+    --accent: #00bcff;
 }
 
 @font-face {
@@ -17,6 +19,7 @@ body {
     background-color: var(--main-bg);
     color: var(--main-fg);
     font-family: Inter;
+    margin: 0;
 }
 
 form {
@@ -84,10 +87,43 @@ td, th {
 
 a {
     color: var(--main-fg);
-    text-decoration-color: #00bcff;
+    text-decoration-color: var(--accent);
     font-weight: bold;
 }
 
 a:hover {
     text-decoration-thickness: 2px;
+}
+
+header {
+    border-bottom: var(--border-bg);
+    padding-block: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 25px;
+}
+
+header .left {
+    text-decoration: none;
+    color: var(--main-fg);
+    font-weight: 900;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+header .left svg {
+    padding-right: 10px;
+    fill: var(--accent);
+    height: 30px;
+}
+
+header .right {
+    display: flex;
+}
+
+header .right svg {
+    fill: #9ca3af;
+    height: 22px;
 }
