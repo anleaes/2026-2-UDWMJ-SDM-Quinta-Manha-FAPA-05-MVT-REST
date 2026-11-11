@@ -5,7 +5,7 @@
     --light-bg: #364153;
     --border: 1px solid #494b53;
     --border-bg: 1px solid #1d202a;
-    --border-radius: 5px;
+    --border-radius: .5rem;
     --highlight: #4a5565;
     --accent: #00bcff;
 }
@@ -25,14 +25,13 @@ body {
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 500px;
 }
 
-label {
-    font-size: 25px;
-}
-
-input {
+form input {
     font-family: Inter;
     color: var(--main-fg);
 
@@ -41,32 +40,31 @@ input {
     border: var(--border);
     margin-top: 5px;
     margin-bottom: 10px;
-    width: 400px;
     height: 30px;
 }
 
-button {
+.button {
+    font-family: Inter;
     background-color: var(--light-bg);
     border-radius: 20px;
     border: var(--border);
     color: var(--main-fg);
-    width: 200px;
-    height: 40px;
     font-size: 18px;
     font-weight: bold;
+    text-decoration: none;
+    padding-block: .50rem;
+    padding-inline: 1rem;
 }
 
-button:hover {
+.button:hover {
     background-color: var(--highlight);
 }
 
-.main-title {
-    text-align: center;
+.button[type="submit"] {
+    margin-top: 1.5rem;
 }
 
 table {
-    margin-left: auto;
-    margin-right: auto;
     border-collapse: collapse;
     font-size: 20px;
     text-align: left;
@@ -126,4 +124,11 @@ header .right {
 header .right svg {
     fill: #9ca3af;
     height: 22px;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
