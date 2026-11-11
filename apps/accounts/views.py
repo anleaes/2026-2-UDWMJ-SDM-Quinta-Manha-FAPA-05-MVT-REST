@@ -39,3 +39,19 @@ def user_login(request: HttpRequest) -> HttpResponse:
 def user_logout(request: HttpRequest) -> HttpResponse:
     logout(request)
     return redirect("accounts:user_login")
+
+@login_required(login_url = "/contas/login/")
+def user_change_password(request):
+    template_name = "accounts/user_change_password.html"
+    if request.method == "POST":
+        form = PasswordChange(user = request.user, data = request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+        else:
+            return redirect("accounts:user_login")
+    form = PasswordChangeForm(user = request.user)
+    context = {
+        "form" : form,
+    }
+    return render(request, template_name, context)
