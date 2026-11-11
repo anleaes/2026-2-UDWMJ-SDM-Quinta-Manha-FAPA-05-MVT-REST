@@ -81,3 +81,13 @@ td, th {
     padding-right: 15px;
     padding-block: 15px;
 }
+
+a {
+    color: var(--main-fg);
+    text-decoration-color: #00bcff;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration-thickness: 2px;
+}
