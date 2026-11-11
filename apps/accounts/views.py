@@ -21,3 +21,16 @@ def add_user(request: HttpRequest) -> HttpResponse:
         "form" : form,
     }
     return render(request, template_name, context)
+
+def user_login(request: HttpRequest) -> HttpResponse:
+    template_name = "accounts/user_login.html"
+    context       = {}
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user     = authenticate(username = username, password = password)
+        if user is not None:
+            login(request, user)
+            return redirect(request.GET.get("next", "/"))
+        return redirect("accounts:user_login")
+    return render(request, template_name, context)
