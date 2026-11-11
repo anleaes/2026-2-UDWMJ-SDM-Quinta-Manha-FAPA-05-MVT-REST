@@ -33,6 +33,8 @@ Lista de Funcionários - {{ block.super }}
             {% else %}
             <td>Inativo</td>
             {% endif %}
+            <td><a href="{% url "employees:edit_employee" e.id %}">Editar</a></td>
+            <td><a href="{% url "employees:delete_employee" e.id %}">Excluir</a></td>
         </tr>
         {% endfor %}
     </tbody>
