@@ -6,24 +6,24 @@ Adicionar Funcionário - {{ block.super }}
 
 {% block body %}
 
-<h1 class="main-title">
-    <b>Cadastro de Funcionário</b>
-</h1>
-<form action="" method="POST">
-    {% csrf_token %}
-    <label>Nome</label>
-    {{ form.name }}
-    <label>Matrícula</label>
-    {{ form.registration }}
-    <label>E-mail</label>
-    {{ form.email }}
-    <label>Telefone</label>
-    {{ form.phone }}
-    <label>Data de Aprovação</label>
-    {{ form.approval }}
-    <label>Ativo</label>
-    {{ form.isactive }}
-    <button type="submit">Salvar</button>
-</form>
+<div class="section">
+    <h1>Cadastro de Funcionário</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label>Nome</label>
+        {{ form.name }}
+        <label>Matrícula</label>
+        {{ form.registration }}
+        <label>E-mail</label>
+        {{ form.email }}
+        <label>Telefone</label>
+        {{ form.phone }}
+        <label>Data de Aprovação</label>
+        {{ form.approval }}
+        <label>Ativo</label>
+        {{ form.isactive }}
+        <button type="submit" class="button">Salvar</button>
+    </form>
+</div>
 
 {% endblock body %}

@@ -6,38 +6,41 @@ Lista de Funcionários - {{ block.super }}
 
 {% block body %}
 
-<h1 class="main-title">Lista de Funcionários </h1>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Matrícula</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
-            <th>Data de Aprovação</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for e in employees %}
-        <tr>
-            <td>{{ e.id }}</td>
-            <td>{{ e.name }}</td>
-            <td>{{ e.registration }}</td>
-            <td>{{ e.email }}</td>
-            <td>{{ e.phone }}</td>
-            <td>{{ e.approval }}</td>
-            {% if e.isactive %}
-            <td>Ativo</td>
-            {% else %}
-            <td>Inativo</td>
-            {% endif %}
-            <td><a href="{% url "employees:edit_employee" e.id %}">Editar</a></td>
-            <td><a href="{% url "employees:delete_employee" e.id %}">Excluir</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="section">
+    <h1>Lista de Funcionários</h1>
+    <a href="{% url "employees:add_employee" %}" class="button">Novo Funcionário</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Matrícula</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Data de Aprovação</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in employees %}
+            <tr>
+                <td>{{ e.id }}</td>
+                <td>{{ e.name }}</td>
+                <td>{{ e.registration }}</td>
+                <td>{{ e.email }}</td>
+                <td>{{ e.phone }}</td>
+                <td>{{ e.approval }}</td>
+                {% if e.isactive %}
+                <td>Ativo</td>
+                {% else %}
+                <td>Inativo</td>
+                {% endif %}
+                <td><a href="{% url "employees:edit_employee" e.id %}">Editar</a></td>
+                <td><a href="{% url "employees:delete_employee" e.id %}">Excluir</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% endblock body %}
