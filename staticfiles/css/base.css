@@ -15,10 +15,13 @@
     src: url("../fonts/Inter-Regular.ttf") format("truetype");
 }
 
+* {
+    font-family: Inter;
+}
+
 body {
     background-color: var(--main-bg);
     color: var(--main-fg);
-    font-family: Inter;
     margin: 0;
 }
 
@@ -32,7 +35,6 @@ form {
 }
 
 form input {
-    font-family: Inter;
     color: var(--main-fg);
 
     background-color: var(--hard-bg);
@@ -44,7 +46,6 @@ form input {
 }
 
 .button {
-    font-family: Inter;
     background-color: var(--light-bg);
     border-radius: 20px;
     border: var(--border);
