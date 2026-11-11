@@ -44,7 +44,7 @@ def user_logout(request: HttpRequest) -> HttpResponse:
 def user_change_password(request):
     template_name = "accounts/user_change_password.html"
     if request.method == "POST":
-        form = PasswordChange(user = request.user, data = request.POST)
+        form = PasswordChangeForm(user = request.user, data = request.POST)
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
