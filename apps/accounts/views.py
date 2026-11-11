@@ -3,6 +3,7 @@ from django.contrib.auth.models     import User
 from django.contrib.auth            import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms      import PasswordChangeForm
+from django.http                    import HttpRequest, HttpResponse
 from .forms                         import UserForm, UserChangeInformationForm
 
 # Create your views here.
@@ -41,7 +42,7 @@ def user_logout(request: HttpRequest) -> HttpResponse:
     return redirect("accounts:user_login")
 
 @login_required(login_url = "/contas/login/")
-def user_change_password(request):
+def user_change_password(request: HttpRequest) -> HttpResponse:
     template_name = "accounts/user_change_password.html"
     if request.method == "POST":
         form = PasswordChangeForm(user = request.user, data = request.POST)
