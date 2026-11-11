@@ -34,3 +34,8 @@ def user_login(request: HttpRequest) -> HttpResponse:
             return redirect(request.GET.get("next", "/"))
         return redirect("accounts:user_login")
     return render(request, template_name, context)
+
+@login_required(login_url = "/contas/login/")
+def user_logout(request: HttpRequest) -> HttpResponse:
+    logout(request)
+    return redirect("accounts:user_login")
