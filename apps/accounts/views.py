@@ -55,3 +55,17 @@ def user_change_password(request):
         "form" : form,
     }
     return render(request, template_name, context)
+
+@login_required(login_url = "/contas/login/")
+def user_change_information(request: HttpRequest, username: User) -> HttpResponse:
+    template_name = "accounts/user_change_information.html"
+    user          = User.objects.get(username = username)
+    if request.method == "POST":
+        form = UserChangeInformationForm(request.POST, instance = user)
+        if form.is_valid():
+            form.save()
+    form = UserChangeInformationForm(instance = user)
+    context = {
+        "form" : form,
+    }
+    return render(request, template_name, context)
