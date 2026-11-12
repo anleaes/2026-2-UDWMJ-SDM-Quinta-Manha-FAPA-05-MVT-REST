@@ -28,6 +28,7 @@ body {
 h1 {
     font-size: 2.5rem;
     font-weight: 500;
+    margin: 0;
 }
 
 form {
@@ -153,6 +154,7 @@ header .right svg {
     flex-direction: column;
     align-items: center;
     gap: 2.5rem;
+    margin-block: 2.5rem;
 }
 
 .redirect {
