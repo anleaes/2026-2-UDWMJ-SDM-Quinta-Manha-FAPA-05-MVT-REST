@@ -164,6 +164,21 @@ header .right svg {
     text-decoration-color: var(--main-fg);
 }
 
+.checkbox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1.5rem;
+}
+.checkbox input {
+    width: 28px;
+    height: 28px;
+
+}
+.checkbox input:focus {
+    outline: none;
+}
+
 
 .text-center {
     text-align: center;
