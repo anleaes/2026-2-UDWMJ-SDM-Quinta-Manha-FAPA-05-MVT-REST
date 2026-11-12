@@ -133,3 +133,7 @@ header .right svg {
     align-items: center;
     gap: 1rem;
 }
+
+.text-center {
+    text-align: center;
+}
