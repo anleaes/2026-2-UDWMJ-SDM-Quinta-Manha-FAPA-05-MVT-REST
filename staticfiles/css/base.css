@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: "Inter";
-    src: url("../fonts/Inter-Regular.ttf") format("truetype");
+    src: url("../fonts/InterVariable.ttf") format("truetype");
 }
 
 * {
@@ -25,13 +25,18 @@ body {
     margin: 0;
 }
 
+h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
 form {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
     font-size: 1rem;
     width: 100%;
     max-width: 500px;
+    gap: .50rem;
 }
 
 form input {
@@ -40,9 +45,15 @@ form input {
     background-color: var(--hard-bg);
     border-radius: var(--border-radius);
     border: var(--border);
-    margin-top: 5px;
-    margin-bottom: 10px;
-    height: 30px;
+    padding-inline: .75rem;
+    line-height: calc(1.25 / .875);
+    height: 2rem;
+}
+
+form label {
+    line-height: 1.25rem;
+    font-size: .875rem;
+    font-weight: 600;
 }
 
 .button {
@@ -50,8 +61,8 @@ form input {
     border-radius: 20px;
     border: var(--border);
     color: var(--main-fg);
-    font-size: 18px;
-    font-weight: bold;
+    font-size: .875rem;
+    font-weight: 600;
     text-decoration: none;
     padding-block: .50rem;
     padding-inline: 1rem;
@@ -87,7 +98,7 @@ td, th {
 a {
     color: var(--main-fg);
     text-decoration-color: var(--accent);
-    font-weight: bold;
+    font-weight: 600;
 }
 
 a:hover {
@@ -106,7 +117,7 @@ header {
 header .left {
     text-decoration: none;
     color: var(--main-fg);
-    font-weight: 900;
+    font-weight: bold;
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -134,6 +145,11 @@ header .right svg {
     gap: 1rem;
 }
 
+
 .text-center {
     text-align: center;
+}
+
+.mt-6 {
+    margin-top: 1.25rem;
 }
