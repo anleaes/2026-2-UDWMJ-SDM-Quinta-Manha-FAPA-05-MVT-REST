@@ -1,9 +1,11 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http      import HttpRequest, HttpResponse
-from .forms           import EmployeeForm
-from .models          import Employee
+from django.shortcuts               import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.http                    import HttpRequest, HttpResponse
+from .forms                         import EmployeeForm
+from .models                        import Employee
 
 # Create your views here.
+@login_required(login_url="/contas/login/")
 def add_employee(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = EmployeeForm(request.POST)
@@ -20,6 +22,7 @@ def add_employee(request: HttpRequest) -> HttpResponse:
     }
     return render(request, template_name, context)
 
+@login_required(login_url="/contas/login/")
 def list_employees(request: HttpRequest) -> HttpResponse:
     template_name = "employees/list_employees.html"
     employees     = Employee.objects.filter()
@@ -28,6 +31,7 @@ def list_employees(request: HttpRequest) -> HttpResponse:
     }
     return render(request, template_name, context)
 
+@login_required(login_url="/contas/login/")
 def edit_employee(request: HttpRequest, id: int) -> HttpResponse:
     employee = get_object_or_404(Employee, id = id)
     if request.method == "POST":
@@ -43,6 +47,7 @@ def edit_employee(request: HttpRequest, id: int) -> HttpResponse:
     }
     return render(request, template_name, context)
 
+@login_required(login_url="/contas/login/")
 def delete_employee(request: HttpRequest, id: int) -> HttpResponse:
     employee = Employee.objects.get(id = id)
     employee.delete()
