@@ -12,7 +12,7 @@ on:
     push:
         branches: [main]
         paths:
-          - "apps/core/**"
+          - "apps/**"
           - "carrental/**"
           - "manage.py"
           - "flake.nix"
