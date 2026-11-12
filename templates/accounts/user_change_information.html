@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+Alterar Usuário - {{ block.super}}
+{% endblock title %}
+
+{% block body %}
+
+<div class="section">
+    <h1>Alterar Usuário</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label>Nome</label>
+        {{ form.first_name }}
+        <label>Sobrenome</label>
+        {{ form.last_name }}
+        <label>E-mail</label>
+        {{ form.email }}
+        <button type="submit" class="button">Salvar</button>
+        <a href="{% url "accounts:user_change_password" %}" class="redirect text-center mt-6">Alterar Senha</a>
+    </form>
+</div>
+
+{% endblock body %}

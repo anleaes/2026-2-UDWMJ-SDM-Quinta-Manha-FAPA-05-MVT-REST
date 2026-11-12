@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login - {{ block.super}}
+{% endblock title %}
+
+{% block body %}
+
+<div class="section">
+    <h1>Login</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <label>Usuário</label>
+        <input type="text" id="username" name="username" required>
+
+        <label>Senha</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit" class="button">Entrar</button>
+        <a href="{% url "accounts:add_user" %}" class="redirect text-center mt-6">Criar Conta</a>
+    </form>
+</div>
+
+{% endblock body %}
