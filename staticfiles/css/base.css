@@ -67,6 +67,11 @@ form label:not(:first-of-type) {
     margin-top: 1.50rem;
 }
 
+.text-link {
+    text-decoration-color: var(--accent);
+    font-weight: 600;
+}
+
 .button {
     background-color: var(--light-bg);
     border-radius: 20px;
@@ -108,8 +113,6 @@ td, th {
 
 a {
     color: var(--main-fg);
-    text-decoration-color: var(--accent);
-    font-weight: 600;
 }
 
 a:hover {
