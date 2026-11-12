@@ -17,6 +17,7 @@ Alterar Usuário - {{ block.super}}
         <label>E-mail</label>
         {{ form.email }}
         <button type="submit" class="button">Salvar</button>
+        <a href="{% url "accounts:user_change_password" %}" class="redirect text-center mt-6">Alterar Senha</a>
     </form>
 </div>
 
