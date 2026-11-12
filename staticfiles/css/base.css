@@ -148,6 +148,15 @@ header .right svg {
     gap: 2.5rem;
 }
 
+.redirect {
+    text-decoration: none;
+}
+.redirect:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--main-fg);
+}
+
 
 .text-center {
     text-align: center;
