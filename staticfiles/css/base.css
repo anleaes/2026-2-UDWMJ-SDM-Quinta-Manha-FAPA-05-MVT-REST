@@ -49,6 +49,13 @@ form input {
     height: 2.5rem;
 }
 
+form input:focus {
+    outline-color: var(--main-fg);
+    outline-offset: -1px;
+    outline-style: solid;
+    outline-width: 1px;
+}
+
 form label {
     line-height: 1.50rem;
     font-size: .875rem;
