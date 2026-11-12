@@ -20,8 +20,10 @@ Adicionar Funcionário - {{ block.super }}
         {{ form.phone }}
         <label>Data de Aprovação</label>
         {{ form.approval }}
-        <label class="text-center">Ativo</label>
-        {{ form.isactive }}
+        <div class="checkbox">
+            <label class="text-center">Ativo</label>
+            {{ form.isactive }}
+        </div>
         <button type="submit" class="button">Salvar</button>
     </form>
 </div>
