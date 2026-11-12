@@ -98,6 +98,10 @@ table {
     text-align: left;
 }
 
+th {
+    font-weight: 600;
+}
+
 thead tr {
     border-color: var(--highlight);
 }
@@ -131,7 +135,7 @@ header {
 header .left {
     text-decoration: none;
     color: var(--main-fg);
-    font-weight: bold;
+    font-weight: 600;
     font-size: 20px;
     display: flex;
     align-items: center;
