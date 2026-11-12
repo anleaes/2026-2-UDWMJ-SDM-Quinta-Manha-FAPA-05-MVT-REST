@@ -18,7 +18,7 @@ Login - {{ block.super}}
         <input type="password" id="password" name="password" required autofocus>
 
         <button type="submit" class="button">Entrar</button>
-        <a href="{% url "accounts:add_user" %}">Criar Conta</a>
+        <a href="{% url "accounts:add_user" %}" class="redirect text-center mt-6">Criar Conta</a>
     </form>
 </div>
 
