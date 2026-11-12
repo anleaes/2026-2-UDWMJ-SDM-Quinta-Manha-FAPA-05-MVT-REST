@@ -145,6 +145,12 @@ header .left svg {
 
 header .right {
     display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+header .right a {
+    text-decoration: none;
 }
 
 header .right svg {
