@@ -33,6 +33,7 @@
                         django-stubs
                         djangorestframework
                         djangorestframework-stubs
+                        django-cors-headers
                     ]))
                 ];
             };
