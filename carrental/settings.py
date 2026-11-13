@@ -42,6 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # NOTE: REST
+    "rest_framework",
+
+    # NOTE: Local
     "core.apps.CoreConfig",
     "employees.apps.EmployeesConfig",
     "accounts.apps.AccountsConfig",

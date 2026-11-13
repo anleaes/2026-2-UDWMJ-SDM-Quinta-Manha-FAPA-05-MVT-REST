@@ -31,6 +31,8 @@
                         django-widget-tweaks
                         django-filter
                         django-stubs
+                        djangorestframework
+                        djangorestframework-stubs
                     ]))
                 ];
             };
