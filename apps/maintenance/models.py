@@ -3,7 +3,7 @@ from employees.models import Employee
 
 # Create your models here.
 # TODO: Add foreign key for Vehicle
-class Maintenance():
+class Maintenance(models.Model):
     desc           = models.TextField("Descrição", max_length = 100)
     type           = models.CharField("Tipo", max_length = 50)
     expected_start = models.DateField("Início Previsto", auto_now = False, auto_now_add = False)
