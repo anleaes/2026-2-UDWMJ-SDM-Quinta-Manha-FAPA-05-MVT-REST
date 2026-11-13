@@ -7,3 +7,7 @@ app_name = "api_employees"
 
 router = routers.SimpleRouter()
 router.register("", views.EmployeeViewSet, basename = "funcionarios")
+
+urlpatterns = [
+    path("", include(router.urls)),
+]
