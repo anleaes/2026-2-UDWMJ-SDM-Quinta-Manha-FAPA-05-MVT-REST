@@ -21,3 +21,6 @@ class Maintenance():
         verbose_name        = "Manutenção"
         verbose_name_plural = "Manutenções"
         ordering            = [ "id" ]
+
+    def __str__(self):
+        return f"{self.desc}"
