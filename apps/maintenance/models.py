@@ -16,3 +16,8 @@ class Maintenance():
     # NOTE: This does not supports multiple files
     reports  = models.FileField("Laudo", upload_to = "reports/")
     employee = models.ForeignKey(Employee, on_delete = models.CASCADE)
+
+    class Meta:
+        verbose_name        = "Manutenção"
+        verbose_name_plural = "Manutenções"
+        ordering            = [ "id" ]
