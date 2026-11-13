@@ -1,4 +1,5 @@
 from django.db        import models
+from employees.models import Employee
 
 # Create your models here.
 # TODO: Add foreign key for Vehicle
@@ -14,3 +15,4 @@ class Maintenance():
     status = models.CharField("Status", max_length = 50)
     # NOTE: This does not supports multiple files
     reports  = models.FileField("Laudo", upload_to = "reports/")
+    employee = models.ForeignKey(Employee, on_delete = models.CASCADE)
