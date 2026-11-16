@@ -106,6 +106,9 @@ table {
 
 th {
     font-weight: 600;
+    padding-inline: .5rem;
+    padding-block: .625rem;
+    line-height: 1.75rem;
 }
 
 thead tr {
@@ -116,9 +119,10 @@ tr {
     border-bottom: 1px solid var(--light-bg);
 }
 
-td, th {
-    padding-right: 15px;
-    padding-block: 15px;
+td {
+    padding-inline: .5rem;
+    padding-block: 1rem;
+    line-height: 1.5rem;
 }
 
 a {
