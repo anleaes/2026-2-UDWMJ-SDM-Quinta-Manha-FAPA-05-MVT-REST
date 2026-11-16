@@ -20,3 +20,12 @@ def add_maintenance(request: HttpRequest) -> HttpResponse:
         "form": form
     }
     return render(request, template_name, context)
+
+@login_required
+def list_maintenance(request: HttpRequest) -> HttpResponse:
+    template_name = "maintenance/list_maintenance.html"
+    employees     = Maintenance.objects.select_related("vehicle", "employee").all()
+    context = {
+        "maintenance" : maintenance,
+    }
+    return render(request, template_name, context)
