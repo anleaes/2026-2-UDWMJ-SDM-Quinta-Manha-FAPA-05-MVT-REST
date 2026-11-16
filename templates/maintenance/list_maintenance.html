@@ -38,6 +38,8 @@ Manutenções - {{ block.super }}
                 <!-- NOTE: Fix how this is displayed -->
                 <td>{{ m.reports }}</td>
                 <td>{{ m.employee.name }}</td>
+                <td><a href="{% url "maintenance:edit_maintenance" m.id %}" class="text-link">Editar</a></td>
+                <td><a href="{% url "maintenance:delete_maintenance" m.id %}" class="text-link">Excluir</a></td>
             </tr>
             {% endfor %}
         </tbody>
