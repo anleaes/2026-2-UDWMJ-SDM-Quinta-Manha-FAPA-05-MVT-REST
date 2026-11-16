@@ -1,12 +1,13 @@
 :root {
-    --main-bg: #030712;
-    --main-fg: white;
-    --hard-bg: #10141e;
-    --light-bg: #364153;
-    --border: 1px solid #494b53;
-    --border-bg: 1px solid #1d202a;
+    color-scheme: dark light;
+    --main-bg: light-dark(white, #030712);
+    --main-fg: light-dark(#030712, white);
+    --hard-bg: light-dark(white, #10141e);
+    --light-bg: light-dark(black, #364153);
+    --border: 1px solid light-dark(#d9dadc, #494b53);
+    --border-bg: 1px solid light-dark(#f2f2f2, #1d202a);
     --border-radius: .5rem;
-    --highlight: #4a5565;
+    --highlight: light-dark(#1f2937, #4a5565);
     --accent: #00bcff;
 }
 
@@ -92,7 +93,8 @@ input[type="file"]::file-selector-button,
     background-color: var(--light-bg);
     border-radius: 20px;
     border: var(--border);
-    color: var(--main-fg);
+    /* NOTE: Ignores colour scheme */
+    color: white;
     font-size: .875rem;
     font-weight: 600;
     text-decoration: none;
