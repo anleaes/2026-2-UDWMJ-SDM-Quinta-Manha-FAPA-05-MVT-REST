@@ -1,5 +1,6 @@
 from django.db        import models
 from employees.models import Employee
+import os
 
 # Create your models here.
 # TODO: Add foreign key for Vehicle
@@ -21,6 +22,11 @@ class Maintenance(models.Model):
         verbose_name        = "Manutenção"
         verbose_name_plural = "Manutenções"
         ordering            = [ "id" ]
+
+    # NOTE: Report name without path and extension
+    @property
+    def reports_name(self):
+        return os.path.splitext(os.path.basename(self.reports.name))[0]
 
     def __str__(self):
         return f"{self.desc}"
