@@ -33,7 +33,7 @@ def list_maintenance(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def edit_maintenance(request: HttpRequest, id: int) -> HttpResponse:
-    maintenance = get_object_or_404(Employee, id = id)
+    maintenance = get_object_or_404(Maintenance, id = id)
     if request.method == "POST":
         form = MaintenanceForm(request.POST, instance = maintenance)
         if form.is_valid():
