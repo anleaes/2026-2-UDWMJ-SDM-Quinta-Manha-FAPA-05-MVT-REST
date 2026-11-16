@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manutenções - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+
+<div class="section">
+    <h1>Manutenções</h1>
+    <a href="{% url "maintenance:add_maintenance" %}" class="button">Nova Manutenção</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Custo</th>
+                <th>Início Previsto</th>
+                <th>Fim Previsto</th>
+                <th>Início Real</th>
+                <th>Fim Real</th>
+                <th>Status</th>
+                <th>Laudo</th>
+                <th>Responsável</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in maintenance %}
+            <tr>
+                <td>{{ m.id }}</td>
+                <td>{{ m.type }}</td>
+                <td>{{ m.cost }}</td>
+                <td>{{ m.expected_start|date:"SHORT_DATE_FORMAT" }}</td>
+                <td>{{ m.expected_end|date:"SHORT_DATE_FORMAT" }}</td>
+                <td>{{ m.actual_start|date:"SHORT_DATE_FORMAT" }}</td>
+                <td>{{ m.actual_end|date:"SHORT_DATE_FORMAT" }}</td>
+                <td>{{ m.status }}</td>
+                <!-- NOTE: Fix how this is displayed -->
+                <td>{{ m.reports }}</td>
+                <td>{{ m.employee.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock body %}
