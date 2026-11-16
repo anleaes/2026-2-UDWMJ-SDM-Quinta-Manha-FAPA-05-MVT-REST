@@ -29,3 +29,19 @@ def list_maintenance(request: HttpRequest) -> HttpResponse:
         "maintenance" : maintenance,
     }
     return render(request, template_name, context)
+
+@login_required
+def edit_maintenance(request: HttpRequest, id: int) -> HttpResponse:
+    maintenance = get_object_or_404(Employee, id = id)
+    if request.method == "POST":
+        form = MaintenanceForm(request.POST, instance = maintenance)
+        if form.is_valid():
+            form.save()
+            return redirect("maintenance:list_maintenance")
+
+    template_name = "maintenance/add_maintenance.html"
+    form          = MaintenanceForm(instance = maintenance)
+    context       = {
+        "form": form
+    }
+    return render(request, template_name, context)
