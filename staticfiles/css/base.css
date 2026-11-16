@@ -36,7 +36,7 @@ form {
     flex-direction: column;
     width: 100%;
     max-width: 26rem;
-    gap: .50rem;
+    gap: .5rem;
 
     input[type="text"],
     input[type="number"],
@@ -63,13 +63,13 @@ form {
     }
 
     label {
-        line-height: 1.50rem;
+        line-height: 1.5rem;
         font-size: .875rem;
         font-weight: 600;
     }
 
     label:not(:first-of-type) {
-        margin-top: 1.50rem;
+        margin-top: 1.5rem;
     }
 }
 
@@ -86,7 +86,7 @@ form {
     font-size: .875rem;
     font-weight: 600;
     text-decoration: none;
-    padding-block: .50rem;
+    padding-block: .5rem;
     padding-inline: 1rem;
 }
 
