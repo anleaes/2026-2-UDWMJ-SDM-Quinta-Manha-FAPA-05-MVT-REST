@@ -35,7 +35,7 @@ def list_maintenance(request: HttpRequest) -> HttpResponse:
 def edit_maintenance(request: HttpRequest, id: int) -> HttpResponse:
     maintenance = get_object_or_404(Maintenance, id = id)
     if request.method == "POST":
-        form = MaintenanceForm(request.POST, instance = maintenance)
+        form = MaintenanceForm(request.POST, request.FILES, instance = maintenance)
         if form.is_valid():
             form.save()
             return redirect("maintenance:list_maintenance")
