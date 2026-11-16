@@ -8,7 +8,7 @@ from .models                        import Maintenance
 @login_required
 def add_maintenance(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
-        form = MaintenanceForm(request.POST)
+        form = MaintenanceForm(request.POST, request.FILES)
         if form.is_valid():
             f = form.save(commit = False)
             f.save()
