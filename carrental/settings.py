@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "employees.apps.EmployeesConfig",
     "accounts.apps.AccountsConfig",
+    "maintenance.apps.MaintenanceConfig",
 ]
 
 MIDDLEWARE = [
