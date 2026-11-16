@@ -1,3 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http      import HttpRequest, HttpResponse
+from .forms           import MaintenanceForm
+from .models          import Maintenance
 
 # Create your views here.
+@login_required
+def add_maintenance(request: HttpRequest) -> HttpResponse:
+    if request.method == "POST":
+        form = MaintenanceForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit = False)
+            f.save()
+            form.save_m2m()
+            return redirect("maintenance:list_maintenance")
+
+    template_name = "maintenance/add_maintenance.html"
+    form          = MaintenanceForm()
+    context       = {
+        "form": form
+    }
+    return render(request, template_name, context)
