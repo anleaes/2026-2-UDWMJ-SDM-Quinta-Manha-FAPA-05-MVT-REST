@@ -42,8 +42,11 @@ form {
     input[type="number"],
     input[type="email"],
     input[type="password"],
+    select,
     textarea {
         color: var(--main-fg);
+        font: inherit;
+        font-size: .875rem;
 
         background-color: var(--hard-bg);
         border-radius: var(--border-radius);
@@ -71,6 +74,12 @@ form {
     label:not(:first-of-type) {
         margin-top: 1.5rem;
     }
+
+    input[type="file"] {
+        color: var(--main-fg): ;
+        font: inherit;
+        font-size: .875rem;
+    }
 }
 
 .text-link {
@@ -78,6 +87,7 @@ form {
     font-weight: 600;
 }
 
+input[type="file"]::file-selector-button,
 .button {
     background-color: var(--light-bg);
     border-radius: 20px;
@@ -90,6 +100,7 @@ form {
     padding-inline: 1rem;
 }
 
+input[type="file"]::file-selector-button:hover,
 .button:hover {
     background-color: var(--highlight);
 }
