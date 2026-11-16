@@ -11,6 +11,14 @@
     --accent: #00bcff;
 }
 
+:root[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+}
+
 @font-face {
     font-family: "Inter";
     src: url("../fonts/InterVariable.ttf") format("truetype");
@@ -191,6 +199,7 @@ header .right svg {
     align-items: center;
     gap: 2.5rem;
     margin-block: 2.5rem;
+    min-height: 100vh;
 }
 
 .redirect {
@@ -215,6 +224,25 @@ header .right svg {
 }
 .checkbox input:focus {
     outline: none;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.theme-changer {
+    grid-template-columns: repeat(3, 1fr);
+    padding: .1875rem;
+    border-radius: 20px;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+
+    svg {
+        height: 1.75rem;
+        width: 1.75rem;
+    }
 }
 
 
