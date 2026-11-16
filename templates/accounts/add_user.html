@@ -10,16 +10,22 @@ Novo Usuário - {{ block.super}}
     <h1>Novo Usuário</h1>
     <form action="" method="POST">
         {% csrf_token %}
-        <label>Nome</label>
+
+        <label for="id_first_name">Nome</label>
         {{ form.first_name }}
-        <label>Sobrenome</label>
+
+        <label for="id_last_name">Sobrenome</label>
         {{ form.last_name }}
-        <label>Nome de Usuário</label>
+
+        <label for="id_username">Nome de Usuário</label>
         {{ form.username }}
-        <label>E-mail</label>
+
+        <label for="id_email">E-mail</label>
         {{ form.email }}
-        <label>Senha</label>
+
+        <label for="password">Senha</label>
         {{ form.password }}
+
         <button type="submit" class="button">Salvar</button>
     </form>
 </div>
