@@ -25,7 +25,7 @@ def add_maintenance(request: HttpRequest) -> HttpResponse:
 @login_required
 def list_maintenance(request: HttpRequest) -> HttpResponse:
     template_name = "maintenance/list_maintenance.html"
-    employees     = Maintenance.objects.select_related("vehicle", "employee").all()
+    maintenance     = Maintenance.objects.select_related("vehicle", "employee").all()
     context = {
         "maintenance" : maintenance,
     }
