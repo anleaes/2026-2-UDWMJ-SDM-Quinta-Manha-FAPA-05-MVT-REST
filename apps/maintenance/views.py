@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http      import HttpRequest, HttpResponse
-from .forms           import MaintenanceForm
-from .models          import Maintenance
+from django.shortcuts               import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.http                    import HttpRequest, HttpResponse
+from .forms                         import MaintenanceForm
+from .models                        import Maintenance
 
 # Create your views here.
 @login_required
