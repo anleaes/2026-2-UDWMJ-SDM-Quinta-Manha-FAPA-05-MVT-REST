@@ -45,3 +45,9 @@ def edit_maintenance(request: HttpRequest, id: int) -> HttpResponse:
         "form": form
     }
     return render(request, template_name, context)
+
+@login_required
+def delete_maintenance(request: HttpRequest, id: int) -> HttpResponse:
+    maintenance = Maintenance.objects.get(id = id)
+    maintenance.delete()
+    return redirect("maintenance:list_maintenance")
