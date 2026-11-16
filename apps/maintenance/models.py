@@ -8,8 +8,8 @@ class Maintenance(models.Model):
     type           = models.CharField("Tipo", max_length = 50)
     expected_start = models.DateField("Início Previsto", auto_now = False, auto_now_add = False)
     expected_end   = models.DateField("Fim Previsto", auto_now = False, auto_now_add = False)
-    actual_start   = models.DateField("Início Real", auto_now = False, auto_now_add = False)
-    actual_end     = models.DateField("Fim Real", auto_now = False, auto_now_add = False)
+    actual_start   = models.DateField("Início Real", auto_now = False, auto_now_add = False, null = True, blank = True)
+    actual_end     = models.DateField("Fim Real", auto_now = False, auto_now_add = False, null = True, blank = True)
     cost           = models.FloatField("Custo", null = True, blank = True, default = 0.0)
     # NOTE: Should this be a boolean?
     status = models.CharField("Status", max_length = 50)
