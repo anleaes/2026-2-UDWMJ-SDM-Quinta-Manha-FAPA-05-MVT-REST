@@ -32,6 +32,10 @@ body {
     background-color: var(--main-bg);
     color: var(--main-fg);
     margin: 0;
+    display: grid;
+    /* NOTE: Header section footer */
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
 }
 
 h1 {
@@ -199,7 +203,6 @@ header .right svg {
     align-items: center;
     gap: 2.5rem;
     margin-block: 2.5rem;
-    min-height: 100vh;
 }
 
 .redirect {
@@ -252,4 +255,8 @@ footer {
 
 .mt-6 {
     margin-top: 1.5rem;
+}
+
+.self-center {
+    align-self: center;
 }
