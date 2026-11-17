@@ -7,3 +7,7 @@ app_name = "api_maintenance"
 
 router = routers.SimpleRouter()
 router.register("", views.MaintenanceViewSet, basename = "manutencoes")
+
+urlpatterns = [
+    path("", include(router.urls)),
+]
