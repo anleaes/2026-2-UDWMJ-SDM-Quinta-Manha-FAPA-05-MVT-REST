@@ -3,4 +3,5 @@ from maintenance.models import Maintenance
 from .serializers       import MaintenanceSerializer
 
 class MaintenanceViewSet(viewsets.ModelViewSet):
-    queryset = Maintenance.objects.all()
+    queryset         = Maintenance.objects.all()
+    serializer_class = MaintenanceSerializer
