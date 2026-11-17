@@ -4,3 +4,6 @@ from .              import views
 from rest_framework import routers
 
 app_name = "api_maintenance"
+
+router = routers.SimpleRouter()
+router.register("", views.MaintenanceViewSet, basename = "manutencoes")
