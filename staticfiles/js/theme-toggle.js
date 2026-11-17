@@ -1,7 +1,24 @@
 const root = document.documentElement;
 
+function getSysTheme() {
+    return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 function setTheme(theme) {
-    root.dataset.theme = theme;
+    let actualTheme = theme;
+
+    if (actualTheme === "system") {
+        actualTheme = getSysTheme();
+    }
+
+    root.dataset.theme = actualTheme;
+
+    console.log(actualTheme);
+
+    document.querySelectorAll(".data-check").forEach(el => {
+        el.toggleAttribute("data-checked", el.id === `${theme}-theme`);
+    });
+
     try {
         localStorage.setItem("theme", theme);
     } catch {}
@@ -16,37 +33,20 @@ function setSavedTheme() {
 
     if (saved !== null) {
         setTheme(saved);
-        console.log(`INFO: Saved theme is \`${saved}\``);
+        console.log(`INFO: Saved theme is \`${saved}-theme\``);
     }
 }
 
 setSavedTheme();
 
-function systemTheme() {
-    const el    = document.getElementById("system-theme");
-    const theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+function theme(theme) {
+    const el = document.getElementById(`${theme}-theme`);
 
     el.addEventListener("click", () => {
         setTheme(theme);
-    })
+    });
 }
 
-function lightTheme() {
-    const el = document.getElementById("light-theme");
-
-    el.addEventListener("click", () => {
-        setTheme("light");
-    })
-}
-
-function darkTheme() {
-    const el = document.getElementById("dark-theme");
-
-    el.addEventListener("click", () => {
-        setTheme("dark");
-    })
-}
-
-systemTheme();
-lightTheme();
-darkTheme();
+theme("system");
+theme("light");
+theme("dark");

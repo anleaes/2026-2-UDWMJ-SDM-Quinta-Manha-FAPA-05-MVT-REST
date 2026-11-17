@@ -1,12 +1,15 @@
 :root {
     color-scheme: dark light;
-    --main-bg: light-dark(white, #030712);
-    --main-fg: light-dark(#030712, white);
-    --hard-bg: light-dark(white, #10141e);
+    --main-bg: light-dark(#ffffff, #030712);
+    --main-fg: light-dark(#030712, #ffffff);
+    --hard-bg: light-dark(#ffffff, #10141e);
     --light-bg: light-dark(black, #364153);
+    --medium-bg: light-dark(#f2f2f2, #1d202a);
+
     --border: 1px solid light-dark(#d9dadc, #494b53);
-    --border-bg: 1px solid light-dark(#f2f2f2, #1d202a);
+    --border-bg: 1px solid var(--medium-bg);
     --border-radius: .5rem;
+
     --highlight: light-dark(#1f2937, #4a5565);
     --accent: #00bcff;
 }
@@ -236,11 +239,24 @@ footer {
 }
 
 .theme-changer {
+    display: inline-grid;
     grid-template-columns: repeat(3, 1fr);
     padding: .1875rem;
     border-radius: 20px;
-    gap: 1.25rem;
+    gap: .125rem;
     margin-bottom: 1.25rem;
+
+    span {
+        /* NOTE: Different transparency based on colour scheme */
+        color: light-dark(
+            color-mix(in srgb, var(--main-fg) 20%, transparent),
+            color-mix(in srgb, var(--main-fg) 45%, transparent)
+        );
+    }
+
+    [data-checked] {
+        color: var(--main-fg);
+    }
 
     svg {
         height: 1.75rem;
