@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+Locação - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+
+<div class="section">
+    <h1>Locação</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+
+    </form>
+</div>
+
+{% endblock body %}
