@@ -3,6 +3,8 @@ from employee.models import Employee
 
 # Create your models here.
 class Inspection(models.Model):
+    pickup_date        = models.DateField("Retirada", auto_now = False, auto_now_add = False)
+    return_date        = models.DateField("Devolução", auto_now = False, auto_now_add = False)
     gas_fee            = models.FloatField("Taxa de Combustível", null = True, blank = True, default = 0.0)
     damage_fee         = models.FloatField("Taxa Avarias", null = True, blank = True, default = 0.0)
     fees_justification = models.TextField("Taxas Justificativas", max_length = 100)
