@@ -35,7 +35,11 @@ Manutenções - {{ block.super }}
                 <td>{{ m.actual_start|date:"SHORT_DATE_FORMAT" }}</td>
                 <td>{{ m.actual_end|date:"SHORT_DATE_FORMAT" }}</td>
                 <td>{{ m.status }}</td>
-                <td><a href="{{ m.reports.url }}">{{ m.reports_name }}</a></td>
+                <td>
+                {% if m.reports %}
+                    <a href="{{ m.reports.url }}">{{ m.reports_name }}</a>
+                {% endif %}
+                </td>
                 <td>{{ m.employee.name }}</td>
                 <td><a href="{% url "maintenance:edit_maintenance" m.id %}" class="text-link">Editar</a></td>
                 <td><a href="{% url "maintenance:delete_maintenance" m.id %}" class="text-link">Excluir</a></td>
