@@ -11,6 +11,11 @@ Locação - {{ block.super }}
     <form action="" method="POST">
         {% csrf_token %}
 
+        {% for f in form %}
+            {{ f.label_tag }}
+            {{ f }}
+        {% endfor %}
+
     </form>
 </div>
 
