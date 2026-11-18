@@ -2,6 +2,7 @@ from django.db        import models
 from employees.models import Employee
 
 # Create your models here.
+# TODO: Add foreign key for Reservation
 class Inspection(models.Model):
     pickup_date        = models.DateField("Retirada", auto_now = False, auto_now_add = False)
     return_date        = models.DateField("Devolução", auto_now = False, auto_now_add = False)
