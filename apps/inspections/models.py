@@ -1,4 +1,5 @@
-from django.db import models
+from django.db       import models
+from employee.models import Employee
 
 # Create your models here.
 class Inspection(models.Model):
@@ -9,6 +10,8 @@ class Inspection(models.Model):
     # NOTE: Should this be a boolean?
     status             = models.CharField("Status", max_length = 50)
     contract           = models.FileField("Contrato", upload_to = "contracts/", null = True, blank = True)
+    # NOTE: Should this allow null?
+    employee           = models.ForeignKey(Employee, on_delete = models.CASCADE)
 
     class Meta:
         verbose_name        = "Locação"
