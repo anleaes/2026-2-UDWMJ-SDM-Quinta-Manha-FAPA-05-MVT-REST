@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+Locações - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+
+<div class="section">
+    <h1>Locações</h1>
+    <a href="{% url "inspections:add_inspection" %}" class="button">Nova Locação</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Retirada</th>
+                <th>Devolução</th>
+                <th>Combustível</th>
+                <th>Avarias</th>
+                <th>Justificativas</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Contrato</th>
+                <th>Responsável</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in inspections %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.pickup_date }}</td>
+                <td>{{ i.return_date }}</td>
+                <td>{{ i.gas_fee }}</td>
+                <td>{{ i.damage_fee }}</td>
+                <td>{{ i.final_cost }}</td>
+                <td>{{ i.status }}</td>
+                <td>
+                    {% if i.contract %}
+                        <a href="{{ i.contract.url }}" class="text-link">{{ i.contract.name }}</a>
+                    {% endif %}
+                </td>
+                <td>{{ i.employee.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock body %}
