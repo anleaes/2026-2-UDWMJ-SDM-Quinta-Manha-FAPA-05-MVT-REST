@@ -9,3 +9,8 @@ class Inspection(models.Model):
     # NOTE: Should this be a boolean?
     status             = models.CharField("Status", max_length = 50)
     contract           = models.FileField("Contrato", upload_to = "contracts/", null = True, blank = True)
+
+    class Meta:
+        verbose_name        = "Locação"
+        verbose_name_plural = "Locações"
+        ordering            = [ "id" ]
