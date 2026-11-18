@@ -13,7 +13,7 @@ class Inspection(models.Model):
     status             = models.CharField("Status", max_length = 50)
     contract           = models.FileField("Contrato", upload_to = "contracts/", null = True, blank = True)
     # NOTE: Should this allow null?
-    employee           = models.ForeignKey(Employee, on_delete = models.CASCADE)
+    employee           = models.ForeignKey(Employee, on_delete = models.CASCADE, verbose_name = "Responsável")
 
     class Meta:
         verbose_name        = "Locação"
