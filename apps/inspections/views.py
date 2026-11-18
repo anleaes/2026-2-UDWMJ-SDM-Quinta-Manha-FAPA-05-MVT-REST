@@ -31,3 +31,19 @@ def list_inspections(request: HttpRequest) -> HttpResponse:
         "inspections" : inspections,
     }
     return render(request, template_name, context)
+
+@login_required
+def edit_inspection(request: HttpRequest, id: int) -> HttpResponse:
+    inspection = get_object_or_404(Inspection, id = id)
+    if request.method == "POST":
+        form = InspectionForm(request.POST, request.FILES, instance = inspection)
+        if form.is_valid():
+            form.save()
+            return redirect("inspections:list_inspections")
+
+    template_name = "inspections/add_inspection.html"
+    form          = InspectionForm(instance = inspection)
+    context       = {
+        "form": form
+    }
+    return render(request, template_name, context)
