@@ -40,6 +40,8 @@ Locações - {{ block.super }}
                     {% endif %}
                 </td>
                 <td>{{ i.employee.name }}</td>
+                <td><a href="{% url "inspections:edit_employee" i.id %}" class="text-link">Editar</a></td>
+                <td><a href="{% url "inspections:delete_employee" i.id %}" class="text-link">Excluir</a></td>
             </tr>
             {% endfor %}
         </tbody>
