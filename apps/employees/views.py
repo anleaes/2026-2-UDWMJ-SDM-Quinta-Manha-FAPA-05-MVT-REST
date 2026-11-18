@@ -3,52 +3,23 @@ from django.contrib.auth.decorators import login_required
 from django.http                    import HttpRequest, HttpResponse
 from .forms                         import EmployeeForm
 from .models                        import Employee
+from core.forms                     import Forms
+
+form = Forms(Employee, EmployeeForm, "employees", "list_employees", "add_employee")
 
 # Create your views here.
 @login_required
 def add_employee(request: HttpRequest) -> HttpResponse:
-    if request.method == "POST":
-        form = EmployeeForm(request.POST)
-        if form.is_valid():
-            f = form.save(commit = False)
-            f.save()
-            form.save_m2m()
-            return redirect("employees:list_employees")
-
-    template_name = "employees/add_employee.html"
-    form          = EmployeeForm()
-    context       = {
-        "form": form
-    }
-    return render(request, template_name, context)
+    return form.add(request)
 
 @login_required
 def list_employees(request: HttpRequest) -> HttpResponse:
-    template_name = "employees/list_employees.html"
-    employees     = Employee.objects.filter()
-    context = {
-        "employees" : employees,
-    }
-    return render(request, template_name, context)
+    return form.list(request)
 
 @login_required
 def edit_employee(request: HttpRequest, id: int) -> HttpResponse:
-    employee = get_object_or_404(Employee, id = id)
-    if request.method == "POST":
-        form = EmployeeForm(request.POST, instance = employee)
-        if form.is_valid():
-            form.save()
-            return redirect("employees:list_employees")
-
-    template_name = "employees/add_employee.html"
-    form          = EmployeeForm(instance = employee)
-    context       = {
-        "form": form
-    }
-    return render(request, template_name, context)
+    return form.edit(request, id)
 
 @login_required
 def delete_employee(request: HttpRequest, id: int) -> HttpResponse:
-    employee = Employee.objects.get(id = id)
-    employee.delete()
-    return redirect("employees:list_employees")
+    return form.delete(request, id)
