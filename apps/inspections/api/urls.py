@@ -7,3 +7,7 @@ app_name = "api_inspections"
 
 router = routers.SimpleRouter()
 router.register("", views.InspectionViewSet, basename = "locacoes")
+
+urlpatterns = [
+    path("", include(router.urls)),
+]
