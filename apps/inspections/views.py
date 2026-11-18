@@ -47,3 +47,9 @@ def edit_inspection(request: HttpRequest, id: int) -> HttpResponse:
         "form": form
     }
     return render(request, template_name, context)
+
+@login_required
+def delete_inspection(request: HttpRequest, id: int) -> HttpResponse:
+    inspection = Inspection.objects.get(id = id)
+    inspection.delete()
+    return redirect("inspection:list_inspections")
