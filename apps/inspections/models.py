@@ -14,3 +14,6 @@ class Inspection(models.Model):
         verbose_name        = "Locação"
         verbose_name_plural = "Locações"
         ordering            = [ "id" ]
+
+    def __str__(self):
+        return f"{self.fees_justification}"
