@@ -1,5 +1,5 @@
-from django.db       import models
-from employee.models import Employee
+from django.db        import models
+from employees.models import Employee
 
 # Create your models here.
 class Inspection(models.Model):
