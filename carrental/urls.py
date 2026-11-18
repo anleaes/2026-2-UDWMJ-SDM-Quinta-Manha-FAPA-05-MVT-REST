@@ -27,6 +27,7 @@ urlpatterns = [
     path("api/funcionarios/", include("employees.api.urls", namespace = "api_employees")),
 
     path("locacoes/", include("inspections.urls", namespace = "inspections")),
+    path("api/locacoes/", include("inspections.api.urls", namespace = "api_inspections")),
 
     path("contas/", include("accounts.urls", namespace = "accounts")),
 
