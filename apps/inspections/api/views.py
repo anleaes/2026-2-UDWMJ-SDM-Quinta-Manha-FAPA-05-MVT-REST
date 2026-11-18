@@ -4,3 +4,4 @@ from .serializers       import InspectionSerializer
 
 class InspectionViewSet(viewsets.ModelViewSet):
     queryset         = Inspection.objects.all()
+    serializer_class = InspectionSerializer
