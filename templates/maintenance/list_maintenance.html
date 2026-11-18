@@ -37,7 +37,7 @@ Manutenções - {{ block.super }}
                 <td>{{ m.status }}</td>
                 <td>
                 {% if m.reports %}
-                    <a href="{{ m.reports.url }}">{{ m.reports_name }}</a>
+                    <a href="{{ m.reports.url }}" class="text-link">{{ m.reports_name }}</a>
                 {% endif %}
                 </td>
                 <td>{{ m.employee.name }}</td>
