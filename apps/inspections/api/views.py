@@ -1,3 +1,6 @@
 from rest_framework     import viewsets
 from inspections.models import Inspection
 from .serializers       import InspectionSerializer
+
+class InspectionViewSet(viewsets.ModelViewSet):
+    queryset         = Inspection.objects.all()
