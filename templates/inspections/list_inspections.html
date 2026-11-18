@@ -32,6 +32,7 @@ Locações - {{ block.super }}
                 <td>{{ i.return_date }}</td>
                 <td>{{ i.gas_fee }}</td>
                 <td>{{ i.damage_fee }}</td>
+                <td>{{ i.fees_justification }}</td>
                 <td>{{ i.final_cost }}</td>
                 <td>{{ i.status }}</td>
                 <td>
@@ -40,8 +41,8 @@ Locações - {{ block.super }}
                     {% endif %}
                 </td>
                 <td>{{ i.employee.name }}</td>
-                <td><a href="{% url "inspections:edit_employee" i.id %}" class="text-link">Editar</a></td>
-                <td><a href="{% url "inspections:delete_employee" i.id %}" class="text-link">Excluir</a></td>
+                <td><a href="{% url "inspections:edit_inspection" i.id %}" class="text-link">Editar</a></td>
+                <td><a href="{% url "inspections:delete_inspection" i.id %}" class="text-link">Excluir</a></td>
             </tr>
             {% endfor %}
         </tbody>
