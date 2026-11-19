@@ -15,6 +15,7 @@ class Maintenance(models.Model):
     # NOTE: Should this be a boolean?
     status         = models.CharField("Status", max_length = 50)
     reports        = models.FileField("Laudo", upload_to = "reports/", null = True, blank = True)
+    # NOTE: Allow null?
     employee       = models.ForeignKey(Employee, on_delete = models.CASCADE)
 
     class Meta:
