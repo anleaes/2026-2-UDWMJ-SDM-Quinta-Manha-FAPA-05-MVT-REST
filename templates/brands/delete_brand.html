@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Excluir Marca - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<div class="section">
+    <h1>Excluir Marca</h1>
+
+    <p>
+        Deseja excluir a marca
+        <strong>{{ brand.name }}</strong>?
+    </p>
+
+    {% if error %}
+        <p role="alert">{{ error }}</p>
+    {% endif %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        {% if not error %}
+            <button type="submit" class="button">
+                Confirmar exclusão
+            </button>
+        {% endif %}
+
+        <a
+            href="{% url 'brands:list_brands' %}"
+            class="text-link self-center"
+        >
+            Voltar
+        </a>
+    </form>
+</div>
+{% endblock body %}
