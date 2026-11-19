@@ -11,8 +11,7 @@ form = Forms(
     Brand,
     BrandForm,
     "brands",
-    "list_brands",
-    "add_brand"
+    "brand",
 )
 
 @login_required
@@ -35,11 +34,9 @@ def delete_brand(request: HttpRequest, id: int) -> HttpResponse:
     if request.method == "POST":
         try:
             return form.delete(request, id)
-        
+
         except ProtectedError:
             error = "Não é possível excluir a marca, pois existem veículos associados a ela!"
 
     context = { "brand" : brand, "error" : error }
     return render(request, "brands/delete_brand.html", context)
-
-        
