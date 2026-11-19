@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import ProtectedError
 
 from core.forms import *
 
@@ -25,3 +26,20 @@ def list_brands(request: HttpRequest) -> HttpResponse:
 @login_required
 def edit_brand(request: HttpRequest, id: int) -> HttpResponse:
     return form.edit(request, id)
+
+@login_required
+def delete_brand(request: HttpRequest, id: int) -> HttpResponse:
+    brand = Brand.objects.get(id = id)
+    error = None
+
+    if request.method == "POST":
+        try:
+            return form.delete(request, id)
+        
+        except ProtectedError:
+            error = "Não é possível excluir a marca, pois existem veículos associados a ela!"
+
+    context = { "brand" : brand, "error" : error }
+    return render(request, "brands/delete_brand.html", context)
+
+        
