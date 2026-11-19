@@ -1,4 +1,6 @@
-from django.db import models
+from django.db          import models
+from employee.models    import Employee
+from inspections.models import Inspection
 
 # Create your models here.
 class Payment(models.Model):
@@ -10,6 +12,8 @@ class Payment(models.Model):
     created_at = models.DateField("Registrado Em", auto_now_add = True)
     approved   = models.DataField("Confirmado Em", auto_now = False, auto_now_add = False)
     receipt    = models.FileField("Comprovante", upload_to = "receipts/", null = True, blank = True)
+    employee   = models.ForeignKey(Employee, on_delete = models.CASCADE)
+    inspection = models.ForeignKey(Inspection, on_delete = models.CASCADE)
 
     class Meta:
         verbose_name        = "Pagamento"
