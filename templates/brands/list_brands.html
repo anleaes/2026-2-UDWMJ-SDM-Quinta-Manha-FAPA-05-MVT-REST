@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Lista de Marcas - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<div class="section">
+    <h1>Lista de Marcas</h1>
+
+    <a href="{% url 'brands:add_brand' %}" class="button">
+        Nova Marca
+    </a>
+
+    <div style="max-width: 100%; overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>País de origem</th>
+                    <th>Descrição</th>
+                    <th>Situação</th>
+                    <th>Logo</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for brand in brands %}
+                    <tr>
+                        <td>{{ brand.id }}</td>
+                        <td>{{ brand.name }}</td>
+                        <td>{{ brand.country_origin }}</td>
+                        <td>{{ brand.description }}</td>
+
+                        <td>
+                            {% if brand.isactive %}
+                                Ativa
+                            {% else %}
+                                Inativa
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if brand.logo %}
+                                <img
+                                    src="{{ brand.logo.url }}"
+                                    alt="Logo de {{ brand.name }}"
+                                    width="64"
+                                    height="48"
+                                    style="object-fit: contain;"
+                                >
+                            {% else %}
+                                Sem logo
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <a
+                                href="{% url 'brands:edit_brand' brand.id %}"
+                                class="text-link"
+                            >
+                                Editar
+                            </a>
+                        </td>
+
+                        <td>
+                            <a
+                                href="{% url 'brands:delete_brand' brand.id %}"
+                                class="text-link"
+                            >
+                                Excluir
+                            </a>
+                        </td>
+                    </tr>
+
+                {% empty %}
+                    <tr>
+                        <td colspan="8">
+                            Nenhuma marca cadastrada.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{% url 'core:home' %}" class="text-link">
+        Início
+    </a>
+</div>
+{% endblock body %}
