@@ -21,3 +21,7 @@ def add_brand(request: HttpRequest) -> HttpResponse:
 @login_required
 def list_brands(request: HttpRequest) -> HttpResponse:
     return form.list(request)
+
+@login_required
+def edit_brand(request: HttpRequest, id: int) -> HttpResponse:
+    return form.edit(request, id)
