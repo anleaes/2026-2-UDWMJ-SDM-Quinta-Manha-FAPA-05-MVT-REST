@@ -7,7 +7,7 @@ class Brand(models.Model):
     country_origin = models.CharField("País de Origem", max_length=50)
     description = models.TextField("Descrição")
     is_active = models.BooleanField("Ativo", default=True)
-    logo = models.ImageField("Logo")
+    logo = models.ImageField("Logo", blank=True)
 
     class Meta:
         verbose_name = "Marca"
