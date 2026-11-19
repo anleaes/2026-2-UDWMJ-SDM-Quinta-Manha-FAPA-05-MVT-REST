@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http      import HttpRequest, HttpResponse
 from dataclasses      import dataclass
 from django.conf      import settings
+from django.db.models import QuerySet
 from django           import forms
 
 @dataclass
@@ -38,8 +39,16 @@ class Forms():
         context = { "form" : self.ModelForm() }
         return render(request, self.templates.add, context)
 
-    def list(self, request: HttpRequest) -> HttpResponse:
-        context = { self.templates.directory : self.Model.objects.filter() }
+    def list(self, request: HttpRequest, related_fields: str | list[str] | None = None) -> HttpResponse:
+        model: QuerySet
+        if related_fields is None:
+            model = self.Model.objects.filter()
+        else:
+            if isinstance(related_fields, str):
+                model = self.Model.objects.select_related(related_fields).all()
+            else:
+                model = self.Model.objects.select_related(*related_fields).all()
+        context = { self.templates.directory : model }
         return render(request, self.templates.list, context)
 
     def edit(self, request: HttpRequest, id: int) -> HttpResponse:
