@@ -8,7 +8,7 @@ class BrandAdmin(admin.ModelAdmin):
         "id",
         "name",
         "country_origin",
-        "isactive",
+        "is_active",
     ]
 
     search_fields = [
@@ -16,4 +16,4 @@ class BrandAdmin(admin.ModelAdmin):
         "country_origin",
     ]
 
-    list_filter = ["isactive"]
+    list_filter = ["is_active"]
