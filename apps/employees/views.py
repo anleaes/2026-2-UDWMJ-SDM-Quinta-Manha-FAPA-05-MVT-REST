@@ -5,7 +5,10 @@ from .forms                         import EmployeeForm
 from .models                        import Employee
 from core.forms                     import Forms
 
-form = Forms(Employee, EmployeeForm, "employees", "list_employees", "add_employee")
+form = Forms(Model         = Employee,
+             ModelForm     = EmployeeForm,
+             name          = "employees",
+             singular_name = "employee")
 
 # Create your views here.
 @login_required
