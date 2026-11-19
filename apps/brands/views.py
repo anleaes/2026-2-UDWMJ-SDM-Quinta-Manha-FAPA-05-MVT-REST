@@ -17,3 +17,7 @@ form = Forms(
 @login_required
 def add_brand(request: HttpRequest) -> HttpResponse:
     return form.add(request)
+
+@login_required
+def list_brands(request: HttpRequest) -> HttpResponse:
+    return form.list(request)
