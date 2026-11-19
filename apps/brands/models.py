@@ -21,7 +21,8 @@ class Brand(models.Model):
 
     logo = models.ImageField("Logo",
                              upload_to="brands/logos/", 
-                             blank=True)
+                             blank=True,
+                             help_text="Faça upload do logo da marca ou deixe em branco.")
 
     class Meta:
         verbose_name = "Marca"
