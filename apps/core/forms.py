@@ -33,6 +33,8 @@ class Forms():
                 f.save()
                 form.save_m2m()
                 return redirect(self.templates.url)
+            else:
+                self.ModelForm()
         context = { "form" : self.ModelForm() }
         return render(request, self.templates.add, context)
 

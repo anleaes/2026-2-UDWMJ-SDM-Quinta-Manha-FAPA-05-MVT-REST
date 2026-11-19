@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if form.instance.pk %}
+        Editar Marca
+    {% else %}
+        Adicionar Marca
+    {% endif %}
+    - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<div class="section">
+    <h1>
+        {% if form.instance.pk %}
+            Editar Marca
+        {% else %}
+            Cadastro de Marca
+        {% endif %}
+    </h1>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        <label for="id_name">Nome</label>
+        {{ form.name }}
+        {{ form.name.errors }}
+
+        <label for="id_country_origin">País de origem</label>
+        {{ form.country_origin }}
+        {{ form.country_origin.errors }}
+
+        <label for="id_description">Descrição</label>
+        {{ form.description }}
+        {{ form.description.errors }}
+
+        <div class="checkbox">
+            <label for="id_is_active">Ativa</label>
+            {{ form.is_active }}
+            {{ form.is_active.errors }}
+        </div>
+
+        <label for="id_logo">Logo</label>
+        {{ form.logo }}
+        {{ form.logo.errors }}
+        <small>{{ form.logo.help_text }}</small>
+
+        {% if form.initial.logo %}
+            <p>Logo atual</p>
+
+            <img
+                src="{{ form.initial.logo.url }}"
+                alt="Logo de {{ form.instance.name }}"
+                width="120"
+                height="90"
+                style="object-fit: contain;"
+            >
+        {% endif %}
+
+        <button type="submit" class="button">
+            Salvar
+        </button>
+
+        <a
+            href="{% url 'brands:list_brands' %}"
+            class="text-link self-center"
+        >
+            Cancelar
+        </a>
+    </form>
+</div>
+{% endblock body %}

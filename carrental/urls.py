@@ -27,6 +27,8 @@ urlpatterns = [
     path("api/funcionarios/", include("employees.api.urls", namespace = "api_employees")),
 
     path("contas/", include("accounts.urls", namespace = "accounts")),
+
+    path("marcas/", include("brands.urls", namespace = "brands")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

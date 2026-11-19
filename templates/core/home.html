@@ -5,5 +5,21 @@
 {% endblock title %}
 
 {% block body %}
+<div class="section">
+    <h1>Aluguel de Carros</h1>
 
+    <a
+        href="{% url 'brands:list_brands' %}"
+        class="button"
+    >
+        Marcas
+    </a>
+
+    <a
+        href="{% url 'employees:list_employees' %}"
+        class="button"
+    >
+        Funcionários
+    </a>
+</div>
 {% endblock body %}
