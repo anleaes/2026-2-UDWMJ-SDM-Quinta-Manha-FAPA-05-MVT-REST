@@ -10,3 +10,8 @@ class Payment(models.Model):
     created_at = models.DateField("Registrado Em", auto_now_add = True)
     approved   = models.DataField("Confirmado Em", auto_now = False, auto_now_add = False)
     receipt    = models.FileField("Comprovante", upload_to = "receipts/", null = True, blank = True)
+
+    class Meta:
+        verbose_name        = "Pagamento"
+        verbose_name_plural = "Pagamentos"
+        ordering            = [ "id" ]
