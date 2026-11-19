@@ -11,35 +11,10 @@ Manutenção - {{ block.super }}
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
-        <label for="id_desc">Descrição</label>
-        {{ form.desc }}
-
-        <label for="id_type">Tipo</label>
-        {{ form.type }}
-
-        <label for="id_cost">Custo</label>
-        {{ form.cost }}
-
-        <label for="id_expected_start">Início Previsto</label>
-        {{ form.expected_start }}
-
-        <label for="id_expected_end">Fim Previsto</label>
-        {{ form.expected_end }}
-
-        <label for="id_actual_start">Início Real</label>
-        {{ form.actual_start }}
-
-        <label for="id_actual_end">Fim Real</label>
-        {{ form.actual_end }}
-
-        <label for="id_status">Status</label>
-        {{ form.status }}
-
-        <label for="id_reports">Laudo</label>
-        {{ form.reports }}
-
-        <label for="id_employee">Responsável</label>
-        {{ form.employee }}
+        {% for f in form %}
+            {{ f.label_tag }}
+            {{ f }}
+        {% endfor %}
 
         <button type="submit" class="button">Salvar</button>
     </form>
