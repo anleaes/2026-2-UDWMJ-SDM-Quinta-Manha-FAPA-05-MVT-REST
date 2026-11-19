@@ -32,6 +32,8 @@ urlpatterns = [
     path("contas/", include("accounts.urls", namespace = "accounts")),
 
     path("marcas/", include("brands.urls", namespace = "brands")),
+
+    path("pagamentos/", include("payments.urls", namespace = "payments")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
