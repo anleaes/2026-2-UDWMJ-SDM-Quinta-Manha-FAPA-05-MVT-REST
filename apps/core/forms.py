@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http      import HttpRequest, HttpResponse
 from dataclasses      import dataclass
 from django.conf      import settings
+from django           import forms
 
 @dataclass
 class Templates():
@@ -53,3 +54,9 @@ class Forms():
         instance = self.Model.objects.get(id = id)
         instance.delete()
         return redirect(self.templates.url)
+
+class BaseForm(forms.ModelForm):
+    # NOTE: Remove `:` suffix for labels
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("label_suffix", "")
+        super().__init__(*args, **kwargs)
