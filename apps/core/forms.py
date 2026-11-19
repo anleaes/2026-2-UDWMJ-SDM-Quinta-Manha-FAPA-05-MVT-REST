@@ -15,14 +15,15 @@ class Forms():
         self.templates = Templates(template_directory, template_list, template_add)
 
     def add(self, request: HttpRequest) -> HttpResponse:
-        if request.method == "POST":
-            form = self.Form(request.POST, request.FILES)
-            if form.is_valid():
-                f = form.save(commit = False)
-                f.save()
-                form.save_m2m()
-                return redirect(self.templates.url)
-        context = { "form" : self.Form() }
+        form = self.Form(request.POST, request.FILES) if request.method == "POST" else self.Form()
+
+        if request.method == "POST" and form.is_valid():
+            f = form.save(commit=False)
+            f.save()
+            form.save_m2m()
+            return redirect(self.templates.url)
+
+        context = {"form": form}
         return render(request, self.templates.add, context)
 
     def list(self, request: HttpRequest) -> HttpResponse:
