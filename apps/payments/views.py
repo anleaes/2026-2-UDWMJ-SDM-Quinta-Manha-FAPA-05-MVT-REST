@@ -24,3 +24,6 @@ def list_payments(request: HttpRequest) -> HttpResponse:
 def edit_payment(request: HttpRequest, id: int) -> HttpResponse:
     return form.edit(request, id)
 
+@login_required
+def delete_payment(request: HttpRequest, id: int) -> HttpResponse:
+    return form.delete(request, id)
