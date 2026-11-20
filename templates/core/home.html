@@ -9,6 +9,13 @@
     <h1>Aluguel de Carros</h1>
 
     <a
+        href="{% url 'employees:list_employees' %}"
+        class="button"
+    >
+        Funcionários
+    </a>
+
+    <a
         href="{% url 'brands:list_brands' %}"
         class="button"
     >
@@ -16,10 +23,10 @@
     </a>
 
     <a
-        href="{% url 'employees:list_employees' %}"
+        href="{% url 'categories:list_categories' %}"
         class="button"
     >
-        Funcionários
+        Categorias
     </a>
 </div>
 {% endblock body %}

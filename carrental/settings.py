@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "employees.apps.EmployeesConfig",
     "accounts.apps.AccountsConfig",
     "brands.apps.BrandsConfig",
+    "categories.apps.CategoriesConfig",
 ]
 
 MIDDLEWARE = [
