@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.decorators import login_required
 
@@ -23,7 +23,7 @@ def _save_category(request, instance=None):
 @login_required
 def add_category(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
-        
+
         return _save_category(request)
 
     return pages.add(request)
@@ -32,3 +32,12 @@ def add_category(request: HttpRequest) -> HttpResponse:
 def list_categories(request: HttpRequest) -> HttpResponse:
 
     return pages.list(request)
+
+@login_required
+def edit_category(request: HttpRequest, id: int) -> HttpResponse:
+    if request.method == "POST":
+        category = get_object_or_404(Category, pk=id)
+        
+        return _save_category(request, instance=category)
+
+    return pages.edit(request, id)
