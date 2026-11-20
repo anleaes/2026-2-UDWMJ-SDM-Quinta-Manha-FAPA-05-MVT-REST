@@ -6,7 +6,7 @@ from rest_framework import routers
 app_name = "api_payments"
 
 router = routers.SimpleRouter()
-router.register("", views.EmployeeViewSet, basename = "pagamentos")
+router.register("", views.PaymentViewSet, basename = "pagamentos")
 
 urlpatterns = [
     path("", include(router.urls)),
