@@ -34,6 +34,7 @@ urlpatterns = [
     path("marcas/", include("brands.urls", namespace = "brands")),
 
     path("pagamentos/", include("payments.urls", namespace = "payments")),
+    path("api/pagamentos/", include("payments.api.urls", namespace = "api_payments")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
