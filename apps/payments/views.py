@@ -15,3 +15,8 @@ form = Forms(Model         = Payment,
 @login_required
 def add_payment(request: HttpRequest) -> HttpResponse:
     return form.add(request)
+
+@login_required
+def list_payments(request: HttpRequest) -> HttpResponse:
+    return form.list(request, related_fields = ["employee", "inspection"])
+
