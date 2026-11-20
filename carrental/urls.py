@@ -29,6 +29,8 @@ urlpatterns = [
     path("contas/", include("accounts.urls", namespace = "accounts")),
 
     path("marcas/", include("brands.urls", namespace = "brands")),
+
+    path("categorias/", include("categories.urls", namespace="categories")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
