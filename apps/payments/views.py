@@ -20,3 +20,7 @@ def add_payment(request: HttpRequest) -> HttpResponse:
 def list_payments(request: HttpRequest) -> HttpResponse:
     return form.list(request, related_fields = ["employee", "inspection"])
 
+@login_required
+def edit_payment(request: HttpRequest, id: int) -> HttpResponse:
+    return form.edit(request, id)
+
