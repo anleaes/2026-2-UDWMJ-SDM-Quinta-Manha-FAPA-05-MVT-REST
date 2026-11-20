@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if form.instance.pk %}Editar Categoria{% else %}Adicionar Categoria{% endif %} - {{ block.super }}
+{% endblock %}
+
+{% block body %}
+<div class="section">
+    <h1>{% if form.instance.pk %}Editar Categoria{% else %}Cadastro de Categoria{% endif %}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <label for="id_name">Nome</label>
+        {{ form.name }}
+        {{ form.name.errors }}
+
+        <label for="id_description">Descrição</label>
+        {{ form.description }}
+        {{ form.description.errors }}
+
+        <label for="id_default_daily_rate">Diária padrão (R$)</label>
+        {{ form.default_daily_rate }}
+        <small id="id_default_daily_rate_helptext">{{ form.default_daily_rate.help_text }}</small>
+        {{ form.default_daily_rate.errors }}
+
+        <div class="checkbox">
+            <label for="id_is_active">Ativa</label>
+            {{ form.is_active }}
+            {{ form.is_active.errors }}
+        </div>
+
+        <button class="button" type="submit">Salvar</button>
+        <a class="text-link self-center" href="{% url 'categories:list_categories' %}">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
