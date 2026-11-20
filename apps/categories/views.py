@@ -14,6 +14,7 @@ def _save_category(request, instance=None):
 
     if form.is_valid():
         form.save()
+
         return redirect(pages.templates.url)
 
     return render(request, pages.templates.add, {"form": form})
@@ -22,6 +23,12 @@ def _save_category(request, instance=None):
 @login_required
 def add_category(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
+        
         return _save_category(request)
 
     return pages.add(request)
+
+@login_required
+def list_categories(request: HttpRequest) -> HttpResponse:
+
+    return pages.list(request)
