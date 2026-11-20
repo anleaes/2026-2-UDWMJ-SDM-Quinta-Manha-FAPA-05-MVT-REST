@@ -4,3 +4,6 @@ from .              import views
 from rest_framework import routers
 
 app_name = "api_payments"
+
+router = routers.SimpleRouter()
+router.register("", views.EmployeeViewSet, basename = "pagamentos")
