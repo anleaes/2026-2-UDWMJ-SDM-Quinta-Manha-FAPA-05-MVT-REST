@@ -7,3 +7,7 @@ app_name = "api_payments"
 
 router = routers.SimpleRouter()
 router.register("", views.EmployeeViewSet, basename = "pagamentos")
+
+urlpatterns = [
+    path("", include(router.urls)),
+]
