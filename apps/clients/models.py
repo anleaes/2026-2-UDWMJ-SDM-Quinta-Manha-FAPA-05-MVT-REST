@@ -4,8 +4,11 @@ from django.core.validators import RegexValidator
 # Create your models here.
 
 class Client(models.Model):
-    name = models.CharField(max_length=255)
-    cpf = models.CharField(max_length=11, unique=True, validators=[RegexValidator(r"\A[0-9]{11}\Z",),], help_text="CPF deve conter apenas os números. Não coloque pontos ou traços.")
+    
+    name = models.CharField("Nome", max_length=255)
+    cpf = models.CharField("CPF", max_length=11, unique=True, validators=[RegexValidator(r"\A[0-9]{11}\Z",),], help_text="CPF deve conter apenas os números. Não coloque pontos ou traços.")
+    email = models.EmailField("Email", max_length=100, unique=True)
+    phone = models.CharField("Telefone", max_length=20)
 
     class Meta:
         verbose_name = 'Cliente'
