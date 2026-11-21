@@ -25,3 +25,7 @@ def add_client(request: HttpRequest) -> HttpResponse:
         return _save_client(request)
 
     return pages.add(request)
+
+@login_required
+def list_clients(request: HttpRequest) -> HttpResponse:
+    return pages.list(request)
