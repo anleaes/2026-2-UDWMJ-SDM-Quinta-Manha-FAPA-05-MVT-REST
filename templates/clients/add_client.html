@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if form.instance.pk %}Editar cliente{% else %}Cadastrar cliente{% endif %} - {{ block.super }}
+{% endblock %}
+
+{% block body %}
+<div class="section">
+    <h1>{% if form.instance.pk %}Editar cliente{% else %}Cadastrar cliente{% endif %}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% for field in form %}
+            {% if field.name == "is_active" %}
+                <div class="checkbox">{{ field.label_tag }} {{ field }}</div>
+            {% else %}
+                {{ field.label_tag }}
+                {{ field }}
+            {% endif %}
+
+            {% if field.help_text %}
+                <small id="{{ field.auto_id }}_helptext">{{ field.help_text }}</small>
+            {% endif %}
+
+            {{ field.errors }}
+        {% endfor %}
+
+        <button class="button" type="submit">Salvar</button>
+        <a class="text-link self-center" href="{% url 'clients:list_clients' %}">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
