@@ -8,7 +8,7 @@ from .models import Client
 
 # Create your views here.
 
-pages = Forms.pages(Client, ClientForm, "clients", "Client")
+pages = Forms(Client, ClientForm, "clients", "Client")
 
 def _save_client(request, instance=None):
     form = ClientForm(request.POST, instance=instance)
