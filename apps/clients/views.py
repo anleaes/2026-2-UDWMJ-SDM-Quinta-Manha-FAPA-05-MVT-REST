@@ -37,3 +37,22 @@ def edit_client(request: HttpRequest, id: int) -> HttpResponse:
         return _save_client(request, instance=client)
 
     return pages.edit(request, id)
+
+@login_required
+def delete_client(request: HttpRequest, id: int) -> HttpResponse:
+    client = get_object_or_404(Client, pk=id)
+    error = None
+
+    if request.method == "POST":
+        try:
+            client.delete()
+        except ProtectedError:
+            error = "Este cliente está vinculado a outro registro."
+        else:
+            return redirect(pages.templates.url)
+
+    return render(
+        request,
+        "clients/delete_client.html",
+        {"client": client, "error": error},
+    )
