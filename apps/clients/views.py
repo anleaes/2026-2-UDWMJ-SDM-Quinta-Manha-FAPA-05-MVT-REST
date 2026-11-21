@@ -29,3 +29,11 @@ def add_client(request: HttpRequest) -> HttpResponse:
 @login_required
 def list_clients(request: HttpRequest) -> HttpResponse:
     return pages.list(request)
+
+@login_required
+def edit_client(request: HttpRequest, id: int) -> HttpResponse:
+    if request.method == "POST":
+        client = get_object_or_404(Client, pk=id)
+        return _save_client(request, instance=client)
+
+    return pages.edit(request, id)
