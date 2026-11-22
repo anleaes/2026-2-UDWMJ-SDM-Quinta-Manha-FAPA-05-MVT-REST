@@ -32,3 +32,12 @@ def add_protection(request: HttpRequest) -> HttpResponse:
 @login_required
 def list_protections(request: HttpRequest) -> HttpResponse:
     return pages.list(request)
+
+
+@login_required
+def edit_protection(request: HttpRequest, id: int) -> HttpResponse:
+    if request.method == "POST":
+        protection = get_object_or_404(Protection, pk=id)
+        return _save_protection(request, instance=protection)
+
+    return pages.edit(request, id)
