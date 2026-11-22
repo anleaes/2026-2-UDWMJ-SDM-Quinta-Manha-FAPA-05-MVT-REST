@@ -41,3 +41,23 @@ def edit_protection(request: HttpRequest, id: int) -> HttpResponse:
         return _save_protection(request, instance=protection)
 
     return pages.edit(request, id)
+
+
+@login_required
+def delete_protection(request: HttpRequest, id: int) -> HttpResponse:
+    protection = get_object_or_404(Protection, pk=id)
+    error = None
+
+    if request.method == "POST":
+        try:
+            protection.delete()
+        except ProtectedError:
+            error = "Esta proteção está vinculada a outro registro."
+        else:
+            return redirect(pages.templates.url)
+
+    return render(
+        request,
+        "protections/delete_protection.html",
+        {"protection": protection, "error": error},
+    )
