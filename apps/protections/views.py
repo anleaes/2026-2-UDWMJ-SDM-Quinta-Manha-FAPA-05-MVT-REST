@@ -27,3 +27,8 @@ def add_protection(request: HttpRequest) -> HttpResponse:
         return _save_protection(request)
 
     return pages.add(request)
+
+
+@login_required
+def list_protections(request: HttpRequest) -> HttpResponse:
+    return pages.list(request)
