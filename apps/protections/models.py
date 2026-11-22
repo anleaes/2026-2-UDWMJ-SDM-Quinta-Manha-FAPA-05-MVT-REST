@@ -20,6 +20,9 @@ class Protection(models.Model):
         validators=[MinValueValidator(Decimal("0.00"))],
     )
 
+    is_active = models.BooleanField("Ativo", default=True)
+
+    
     class Meta:
         verbose_name = "Proteção"
         verbose_name_plural = "Proteções"
