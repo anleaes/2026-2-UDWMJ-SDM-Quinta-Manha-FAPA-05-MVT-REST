@@ -13,6 +13,12 @@ class Protection(models.Model):
         decimal_places=2,
         validators=[MinValueValidator(Decimal("0.00"))],
     )
+    deductible = models.DecimalField(
+        "Franquia em R$",
+        max_digits=10,
+        decimal_places=2,
+        validators=[MinValueValidator(Decimal("0.00"))],
+    )
 
     class Meta:
         verbose_name = "Proteção"
