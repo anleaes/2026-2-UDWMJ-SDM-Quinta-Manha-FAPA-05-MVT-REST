@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "brands.apps.BrandsConfig",
     "categories.apps.CategoriesConfig",
+
+    "protections.apps.ProtectionsConfig",
 ]
 
 MIDDLEWARE = [
