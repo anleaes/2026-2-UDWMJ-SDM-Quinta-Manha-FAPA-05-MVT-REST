@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import ProtectedError
 
 from core.forms import Forms
 from .forms import VehicleModelForm
@@ -36,3 +37,16 @@ def edit_vehicle_model(request: HttpRequest, id: int) -> HttpResponse:
         return __save_vehicle_model(request, instance=vehicle_model)
 
     return pages.edit(request, id)
+
+@login_required
+def delete_vehicle_model(request: HttpRequest, id: int) -> HttpResponse:
+    vehicle_model = get_object_or_404(VehicleModel, pk=id)
+    error = None
+
+    if request.method == "POST":
+        try:
+            vehicle_model.delete()
+        except ProtectedError:
+           error = "Não é possível excluir este modelo de veículo! Ele está associado a um ou mais veículos."
+        else:
+            return render(request, "vehicleModel/vehicleModel_deleted.html", {"vehicle_model": vehicle_model, "error": error})
