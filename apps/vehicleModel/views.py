@@ -25,4 +25,6 @@ def add_vehicle_model(request: HttpRequest) -> HttpResponse:
 
     return pages.add(request)
 
-
+@login_required
+def list_vehicle_models(request: HttpRequest) -> HttpResponse:
+    return pages.list(request, related_fields=["brand", "category"])
