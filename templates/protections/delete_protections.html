@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Excluir proteção - {{ block.super }}{% endblock %}
+
+{% block body %}
+<div class="section">
+    <h1>Excluir proteção</h1>
+
+    {% if error %}
+        <p role="alert">{{ error }}</p>
+    {% else %}
+        <p>Deseja excluir a proteção <strong>{{ protection.name }}</strong>?</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button class="button" type="submit">Confirmar exclusão</button>
+        </form>
+    {% endif %}
+
+    <a class="text-link" href="{% url 'protections:list_protections' %}">Voltar</a>
+</div>
+{% endblock %}

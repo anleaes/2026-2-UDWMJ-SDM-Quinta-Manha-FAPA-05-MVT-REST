@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Proteções - {{ block.super }}{% endblock %}
+
+{% block body %}
+<div class="section">
+    <h1>Proteções</h1>
+    <a class="button" href="{% url 'protections:add_protection' %}">Nova proteção</a>
+
+    <div style="max-width: 100%; overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Valor diário</th>
+                    <th>Franquia</th>
+                    <th>Situação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for protection in protections %}
+                    <tr>
+                        <td>{{ protection.id }}</td>
+                        <td>{{ protection.name }}</td>
+                        <td>{{ protection.description }}</td>
+                        <td>R$ {{ protection.daily_rate|floatformat:"2" }}</td>
+                        <td>R$ {{ protection.deductible|floatformat:"2" }}</td>
+                        <td>{{ protection.is_active|yesno:"Ativa,Inativa" }}</td>
+                        <td>
+                            <a class="text-link" href="{% url 'protections:edit_protection' protection.id %}">Editar</a>
+                            <a class="text-link" href="{% url 'protections:delete_protection' protection.id %}">Excluir</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="7">Nenhuma proteção cadastrada.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a class="text-link" href="{% url 'core:home' %}">Início</a>
+</div>
+{% endblock %}
