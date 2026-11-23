@@ -6,8 +6,8 @@ from django.core.validators import MinValueValidator
 # Create your models here.
 
 class VehicleModel(models.Model):
-    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, verbose_name="Marca")
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name="Categoria")
+    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name="vehicle_models", verbose_name="Marca")
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="vehicle_models", verbose_name="Categoria")
     name = models.CharField("Nome", max_length=50)
     engine = models.CharField("Motor", max_length=50)
     transmission = models.CharField("Transmissão", max_length=50)
