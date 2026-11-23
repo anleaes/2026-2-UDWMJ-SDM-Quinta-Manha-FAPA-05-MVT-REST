@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if form.instance.pk %}Editar modelo de veículo{% else %}Cadastrar modelo de veículo{% endif %} - {{ block.super }}
+{% endblock %}
+
+{% block body %}
+<div class="section">
+    <h1>{% if form.instance.pk %}Editar modelo de veículo{% else %}Cadastrar modelo de veículo{% endif %}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {{ form.brand.label_tag }}
+        {{ form.brand }}
+        {{ form.brand.errors }}
+
+        {{ form.category.label_tag }}
+        {{ form.category }}
+        {{ form.category.errors }}
+
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {{ form.name.errors }}
+
+        {{ form.engine.label_tag }}
+        {{ form.engine }}
+        {{ form.engine.errors }}
+
+        {{ form.transmission.label_tag }}
+        {{ form.transmission }}
+        {{ form.transmission.errors }}
+
+        {{ form.seats.label_tag }}
+        {{ form.seats }}
+        {{ form.seats.errors }}
+
+        {{ form.average_km_per_liter.label_tag }}
+        {{ form.average_km_per_liter }}
+        {{ form.average_km_per_liter.errors }}
+
+        <div class="checkbox">
+            {{ form.is_active.label_tag }}
+            {{ form.is_active }}
+            {{ form.is_active.errors }}
+        </div>
+
+        <button class="button" type="submit">Salvar</button>
+        <a class="text-link self-center" href="{% url 'vehicleModel:list_vehicle_models' %}">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
