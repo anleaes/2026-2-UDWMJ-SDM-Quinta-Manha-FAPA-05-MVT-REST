@@ -12,6 +12,7 @@ class Vehicle(models.Model):
     color = models.CharField("Cor", max_length=50)
     current_km = models.PositiveIntegerField("Quilometragem Atual (km)")
     photo = models.ImageField("Foto", upload_to="vehicles/photos/")
+    is_active = models.BooleanField("Ativo", default=True)
 
     class Meta: 
         verbose_name = "Veículo"
