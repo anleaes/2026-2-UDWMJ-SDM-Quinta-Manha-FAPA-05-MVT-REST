@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de clientes - {{ block.super }}{% endblock %}
+
+{% block body %}
+<div class="section">
+    <h1>Lista de clientes</h1>
+    <a class="button" href="{% url 'clients:add_client' %}">Novo cliente</a>
+
+    <div style="max-width: 100%; overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Nascimento</th>
+                    <th>Situação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients %}
+                    <tr>
+                        <td>{{ client.id }}</td>
+                        <td>{{ client.name }}</td>
+                        <td>{{ client.cpf }}</td>
+                        <td>{{ client.email }}</td>
+                        <td>{{ client.phone }}</td>
+                        <td>{{ client.birth_date|date:"d/m/Y" }}</td>
+                        <td>{{ client.is_active|yesno:"Ativo,Inativo" }}</td>
+                        <td>
+                            <a class="text-link" href="{% url 'clients:edit_client' client.id %}">Editar</a>
+                            <a class="text-link" href="{% url 'clients:delete_client' client.id %}">Excluir</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="8">Nenhum cliente cadastrado.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a class="text-link" href="{% url 'core:home' %}">Início</a>
+</div>
+{% endblock %}
