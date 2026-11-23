@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpRequest
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from core.forms import Forms
 from .forms import VehicleModelForm
@@ -28,3 +28,11 @@ def add_vehicle_model(request: HttpRequest) -> HttpResponse:
 @login_required
 def list_vehicle_models(request: HttpRequest) -> HttpResponse:
     return pages.list(request, related_fields=["brand", "category"])
+
+@login_required
+def edit_vehicle_model(request: HttpRequest, id: int) -> HttpResponse:
+    if request.method == "POST":
+        vehicle_model = get_object_or_404(VehicleModel, pk=id)
+        return __save_vehicle_model(request, instance=vehicle_model)
+
+    return pages.edit(request, id)
