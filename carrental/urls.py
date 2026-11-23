@@ -32,7 +32,7 @@ urlpatterns = [
 
     path("categorias/", include("categories.urls", namespace="categories")),
 
-    path("modelos/", include("vehicle_models.urls", namespace="vehicle_models")),
+    path("modelos/", include("vehicleModel.urls", namespace="vehicleModel")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

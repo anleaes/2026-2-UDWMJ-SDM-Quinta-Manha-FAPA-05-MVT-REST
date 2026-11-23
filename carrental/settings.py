@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     "brands.apps.BrandsConfig",
     "categories.apps.CategoriesConfig",
 
-    "vehicle_models.apps.VehicleModelsConfig",
+    "vehicleModel.apps.VehicleModelsConfig",
 ]
 
 MIDDLEWARE = [
