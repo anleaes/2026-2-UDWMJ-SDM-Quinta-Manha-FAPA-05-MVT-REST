@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "categories.apps.CategoriesConfig",
     "clients.apps.ClientsConfig",
     "protections.apps.ProtectionsConfig",
+    "vehicleModel.apps.VehicleModelsConfig",
 ]
 
 MIDDLEWARE = [
