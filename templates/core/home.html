@@ -29,11 +29,23 @@
         Categorias
     </a>
 
+     <a
+        href="{% url 'clients:list_clients' %}"
+        class="button"
+    >
+        Clientes
+    </a>
+
+     <a class="button" href="{% url 'protections:list_protections' %}">
+        Proteções
+    </a>
+
     <a
         href="{% url 'vehicleModel:list_vehicle_models' %}"
         class="button"
     >
         Modelos de veículos
     </a>
+
 </div>
 {% endblock body %}
