@@ -11,6 +11,7 @@ class Vehicle(models.Model):
     year = models.PositiveIntegerField("Ano", validators=[MinValueValidator(2000, "O ano deve ser maior ou igual a 2000.")])
     color = models.CharField("Cor", max_length=50)
     current_km = models.PositiveIntegerField("Quilometragem Atual (km)")
+    photo = models.ImageField("Foto", upload_to="vehicles/photos/")
 
     class Meta: 
         verbose_name = "Veículo"
