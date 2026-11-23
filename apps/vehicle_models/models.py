@@ -12,7 +12,7 @@ class VehicleModel(models.Model):
     transmission = models.CharField("Transmissão", max_length=50)
     seats = models.PositiveIntegerField("Assentos")
     average_km_per_liter = models.DecimalField("Consumo Médio (km/l)", max_digits=5, decimal_places=2)
-    is_active = models.BooleanField("Ativo")
+    is_active = models.BooleanField("Ativo", default=True)
 
     class Meta:
         verbose_name = "Modelo de Veículo"
