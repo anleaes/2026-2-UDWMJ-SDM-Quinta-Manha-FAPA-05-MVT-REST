@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError, transaction
 from django.db.models import Q
+from django.http import FileResponse, Http404
 
 from core.forms import Forms
 from .forms import CNHForm
@@ -41,3 +42,24 @@ def add_cnh(request):
         return _save_cnh(request)
 
     return pages.add(request)
+
+@login_required
+def list_cnhs(request):
+    return pages.list(request, related_fields=["client"])
+
+@login_required
+def download_cnh(request, id):
+    cnh = get_object_or_404(cnh, pk=id)
+
+    if not cnh.document:
+        raise Http404("Arquivo não encontrado")
+
+    try:
+        file = cnh.document.apend("rb")
+    except FileNotFoundError as exc:
+        raise Http404("Arquivo não encontrado") from exc
+
+    return FileResponse(file, as_attachment=True)
+
+
+
