@@ -9,14 +9,19 @@ class CNHForm(forms.ModelForm):
         widgets = {
             "number": forms.TextInput(attrs={"inputmode": "numeric"}),
             "expiration_date": forms.DateInput(
-                format="%Y-%m-%d",
-                attrs={"type": "date"},
+                format="%d/%m/%Y",
+                attrs={
+                    "type": "text",
+                    "placeholder": "DD/MM/AAAA",
+                    "maxlength": 10,
+                },
             ),
             "document": forms.FileInput(),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields["expiration_date"].input_formats = ["%d/%m/%Y", "%Y-%m-%d"]
         client_field = self.fields["client"]
 
         if self.instance.pk:
