@@ -10,7 +10,7 @@ from .models import Vehicle
 
 # Create your views here.
 
-pages = Forms("Vehicles", "Veículos", VehicleForm, Vehicle)
+pages = Forms(Vehicle, VehicleForm, "vehicles", "vehicle")
 
 def _save_vehicle(request, instance=None):
     form = VehicleForm(request.POST, request.FILES, instance=instance)
