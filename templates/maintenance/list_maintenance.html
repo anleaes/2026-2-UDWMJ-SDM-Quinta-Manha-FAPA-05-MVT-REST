@@ -23,6 +23,7 @@ Manutenções - {{ block.super }}
                 <th>Status</th>
                 <th>Laudo</th>
                 <th>Responsável</th>
+                <th>Placa</th>
             </tr>
         </thead>
         <tbody>
@@ -38,6 +39,7 @@ Manutenções - {{ block.super }}
                 <td>{{ m.status }}</td>
                 <td>{% file_link m.reports %}</td>
                 <td>{{ m.employee.name }}</td>
+                <td>{{ m.vehicle.plate }}</td>
                 <td><a href="{% url "maintenance:edit_maintenance" m.id %}" class="text-link">Editar</a></td>
                 <td><a href="{% url "maintenance:delete_maintenance" m.id %}" class="text-link">Excluir</a></td>
             </tr>

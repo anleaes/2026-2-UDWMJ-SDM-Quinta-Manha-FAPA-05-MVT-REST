@@ -1,9 +1,10 @@
 from django.db        import models
 from employees.models import Employee
+from vehicles.models  import Vehicle
+
 import os
 
 # Create your models here.
-# TODO: Add foreign key for Vehicle
 class Maintenance(models.Model):
     desc           = models.TextField("Descrição", max_length = 100)
     type           = models.CharField("Tipo", max_length = 50)
@@ -17,16 +18,12 @@ class Maintenance(models.Model):
     reports        = models.FileField("Laudo", upload_to = "reports/", null = True, blank = True)
     # NOTE: Allow null?
     employee       = models.ForeignKey(Employee, on_delete = models.CASCADE)
+    vehicle        = models.ForeignKey(Vehicle, on_delete = models.CASCADE)
 
     class Meta:
         verbose_name        = "Manutenção"
         verbose_name_plural = "Manutenções"
         ordering            = [ "id" ]
-
-    # NOTE: Report name without path and extension
-    @property
-    def reports_name(self):
-        return os.path.splitext(os.path.basename(self.reports.name))[0]
 
     def __str__(self):
         return f"{self.desc}"

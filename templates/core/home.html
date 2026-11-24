@@ -47,12 +47,14 @@
         Modelos de veículos
     </a>
 
-    <a 
+    <a
         href="{% url 'vehicles:list_vehicles' %}"
-        class="button" 
+        class="button"
     >
         Veículos
     </a>
+
+    <a href="{% url 'maintenance:list_maintenance' %}" class="button">Manutenções</a>
 
 </div>
 {% endblock body %}
