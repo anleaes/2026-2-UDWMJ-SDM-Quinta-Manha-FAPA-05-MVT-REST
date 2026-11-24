@@ -6,6 +6,7 @@ from django.core.validators import RegexValidator
 class CNH(models.Model):
     client = models.OneToOneField("clients.Client", on_delete=models.PROTECT, related_name="cnh", verbose_name="Cliente")
     number = models.CharField("Número de Registro", max_length=11, unique=True, validators=[RegexValidator(r"\A[0-9]{11}\Z]", "Informe os 11 dígitos da CNH")])
+    category = models.CharField("Categoria", max_length=2, choices=[("A", "A"), ("B", "B"), ("AB", "AB"), ("C", "C"), ("D", "D"), ("E", "E")])
 
     class Meta:
         verbose_name = "CNH"
