@@ -68,3 +68,13 @@ def edit_cnh(request, id):
         return _save_cnh(request, instance=cnh)
 
     return pages.edit(request, id)
+
+@login_required
+def delete_cnh(request, id):
+    cnh = get_object_or_404(CNH, pk=id)
+
+    if request.method == "POST":
+        cnh.delete()
+        return redirect(pages.templates.url)
+
+    return render(request, "cnhs/delete_cnh.html", {"cnh": cnh})
