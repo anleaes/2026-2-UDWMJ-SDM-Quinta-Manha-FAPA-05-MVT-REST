@@ -49,13 +49,13 @@ def list_cnhs(request):
 
 @login_required
 def download_cnh(request, id):
-    cnh = get_object_or_404(cnh, pk=id)
+    cnh = get_object_or_404(CNH, pk=id)
 
     if not cnh.document:
         raise Http404("Arquivo não encontrado")
 
     try:
-        file = cnh.document.apend("rb")
+        file = cnh.document.open("rb")
     except FileNotFoundError as exc:
         raise Http404("Arquivo não encontrado") from exc
 
