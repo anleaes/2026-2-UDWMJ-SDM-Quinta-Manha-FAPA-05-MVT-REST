@@ -61,5 +61,10 @@ def download_cnh(request, id):
 
     return FileResponse(file, as_attachment=True)
 
+@login_required
+def edit_cnh(request, id):
+    if request.method == "POST":
+        cnh = get_object_or_404(CNH, pk=id)
+        return _save_cnh(request, instance=cnh)
 
-
+    return pages.edit(request, id)
