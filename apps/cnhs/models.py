@@ -10,7 +10,7 @@ def cnh_storage():
     return FileSystemStorage(location=Path(settings.BASE_DIR) / "private_media")
 class CNH(models.Model):
     client = models.OneToOneField("clients.Client", on_delete=models.PROTECT, related_name="cnh", verbose_name="Cliente")
-    number = models.CharField("Número de Registro", max_length=11, unique=True, validators=[RegexValidator(r"\A[0-9]{11}\Z]", "Informe os 11 dígitos da CNH")])
+    number = models.CharField("Número de Registro", max_length=11, unique=True, validators=[RegexValidator(r"\A[0-9]{11}\Z", "Informe os 11 dígitos da CNH")])
     category = models.CharField("Categoria", max_length=2, choices=[("A", "A"), ("B", "B"), ("AB", "AB"), ("C", "C"), ("D", "D"), ("E", "E")])
     expiration_date = models.DateField("Data de Validade")
     document = models.FileField("Arquivo da CNH", upload_to="cnhs/", storage=cnh_storage)
