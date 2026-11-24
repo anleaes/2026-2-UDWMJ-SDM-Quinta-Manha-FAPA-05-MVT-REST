@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if form.instance.pk %}Editar veículo{% else %}Cadastrar veículo{% endif %} - {{ block.super }}
+{% endblock %}
+
+{% block body %}
+<div class="section">
+    <h1>{% if form.instance.pk %}Editar veículo{% else %}Cadastrar veículo{% endif %}</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {{ form.vehicle_model.label_tag }}
+        {{ form.vehicle_model }}
+        {{ form.vehicle_model.errors }}
+
+        {{ form.plate.label_tag }}
+        {{ form.plate }}
+        <small id="id_plate_helptext">{{ form.plate.help_text }}</small>
+        {{ form.plate.errors }}
+
+        {{ form.renavam.label_tag }}
+        {{ form.renavam }}
+        {{ form.renavam.errors }}
+
+        {{ form.year.label_tag }}
+        {{ form.year }}
+        {{ form.year.errors }}
+
+        {{ form.color.label_tag }}
+        {{ form.color }}
+        {{ form.color.errors }}
+
+        {{ form.current_km.label_tag }}
+        {{ form.current_km }}
+        {{ form.current_km.errors }}
+
+        {{ form.photo.label_tag }}
+        {{ form.photo }}
+        {{ form.photo.errors }}
+
+        {% if form.initial.photo %}
+            <img src="{{ form.initial.photo.url }}" alt="Foto atual do veículo" width="120">
+        {% endif %}
+
+        <div class="checkbox">
+            {{ form.is_active.label_tag }}
+            {{ form.is_active }}
+            {{ form.is_active.errors }}
+        </div>
+
+        <button type="submit" class="button">Salvar</button>
+        <a class="text-link self-center" href="{% url 'vehicles:list_vehicles' %}">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
