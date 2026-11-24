@@ -4,5 +4,7 @@ from . import views
 app_name = "cnhs"
 
 urlpatterns = [
-    path("adicionar/", views.add_cnh, name="add_cnh")
+    path("adicionar/", views.add_cnh, name="add_cnh"),
+    path("listar/", views.list_cnhs, name="list_cnhs"),
+    path("arquivo/<int:id>/", views.download_cnh, name="download_cnh"),
 ]
