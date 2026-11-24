@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}CNHs - {{ block.super }}{% endblock %}
+
+{% block body %}
+<div class="section">
+    <h1>CNHs</h1>
+    <a class="button" href="{% url 'cnhs:add_cnh' %}">Nova CNH</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Número</th>
+                <th>Categoria</th>
+                <th>Validade</th>
+                <th>Arquivo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cnh in cnhs %}
+                <tr>
+                    <td>{{ cnh.pk }}</td>
+                    <td>{{ cnh.client.name }}</td>
+                    <td>{{ cnh.number }}</td>
+                    <td>{{ cnh.category }}</td>
+                    <td>{{ cnh.expiration_date|date:"d/m/Y" }}</td>
+                    <td>
+                        <a class="text-link" href="{% url 'cnhs:download_cnh' cnh.pk %}">Baixar</a>
+                    </td>
+                    <td>
+                        <a class="text-link" href="{% url 'cnhs:edit_cnh' cnh.pk %}">Editar</a>
+                        <a class="text-link" href="{% url 'cnhs:delete_cnh' cnh.pk %}">Excluir</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="7">Nenhuma CNH cadastrada.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="text-link" href="{% url 'core:home' %}">Início</a>
+</div>
+{% endblock %}
