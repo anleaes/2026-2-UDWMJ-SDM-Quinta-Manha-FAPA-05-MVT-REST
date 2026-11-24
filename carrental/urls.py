@@ -37,6 +37,8 @@ urlpatterns = [
     path("protecoes/", include("protections.urls", namespace="protections")),
 
     path("modelos/", include("vehicleModel.urls", namespace="vehicleModel")),
+
+    path("veiculos/", include("vehicles.urls", namespace="vehicles")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
