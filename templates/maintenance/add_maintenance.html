@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manutenção - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+
+<div class="section">
+    <h1>Manutenção</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% for f in form %}
+            {{ f.label_tag }}
+            {{ f }}
+        {% endfor %}
+
+        <button type="submit" class="button">Salvar</button>
+    </form>
+</div>
+
+{% endblock body %}
