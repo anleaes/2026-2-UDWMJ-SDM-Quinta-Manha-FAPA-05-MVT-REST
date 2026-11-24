@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if form.instance.pk %}Editar CNH{% else %}Cadastrar CNH{% endif %} - {{ block.super }}
+{% endblock %}
+
+{% block body %}
+<div class="section">
+    <h1>{% if form.instance.pk %}Editar CNH{% else %}Cadastrar CNH{% endif %}</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% for field in form %}
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+        {% endfor %}
+
+        <button class="button" type="submit">Salvar</button>
+        <a class="text-link self-center" href="{% url 'cnhs:list_cnhs' %}">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
