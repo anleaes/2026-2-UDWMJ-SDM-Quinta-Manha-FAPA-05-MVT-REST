@@ -7,6 +7,7 @@ class CNH(models.Model):
     client = models.OneToOneField("clients.Client", on_delete=models.PROTECT, related_name="cnh", verbose_name="Cliente")
     number = models.CharField("Número de Registro", max_length=11, unique=True, validators=[RegexValidator(r"\A[0-9]{11}\Z]", "Informe os 11 dígitos da CNH")])
     category = models.CharField("Categoria", max_length=2, choices=[("A", "A"), ("B", "B"), ("AB", "AB"), ("C", "C"), ("D", "D"), ("E", "E")])
+    expiration_date = models.DateField("Data de Validade")
 
     class Meta:
         verbose_name = "CNH"
@@ -15,3 +16,11 @@ class CNH(models.Model):
 
     def __str__(self):
         return f"{self.client} - {self.number}"
+
+    @classmethod
+    def allows_rental(cls, *, client, accepted_categories, return_date):
+        return cls.objects.filter(
+            client                  =client, 
+            category__in            =accepted_categories, 
+            expiration_date__gte    =return_date
+            ).exists()
