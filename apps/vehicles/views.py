@@ -10,7 +10,7 @@ from .models import Vehicle
 
 # Create your views here.
 
-pages = Forms("vehicles", "Veículos", VehicleForm, Vehicle)
+pages = Forms("Vehicles", "Veículos", VehicleForm, Vehicle)
 
 def _save_vehicle(request, instance=None):
     form = VehicleForm(request.POST, request.FILES, instance=instance)
@@ -18,7 +18,7 @@ def _save_vehicle(request, instance=None):
     if form.is_valid():
         form.save()
         return redirect(pages.templates.url)
-    return render(request, pages.templates.form, {"form": form})
+    return render(request, pages.templates.add, {"form": form})
 
 @login_required
 def add_vehicle(request: HttpRequest) -> HttpResponse:
