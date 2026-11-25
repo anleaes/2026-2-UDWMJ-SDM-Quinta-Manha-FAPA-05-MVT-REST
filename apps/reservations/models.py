@@ -36,6 +36,21 @@ class Reservation(models.Model):
     expected_pickup = models.DateTimeField("Retirada prevista")
     expected_return = models.DateTimeField("Devolução prevista")
 
+    class Status(models.TextChoices):
+        CONFIRMED = "CONFIRMADA", "confirmada"
+        CANCELLED = "CANCELADA", "cancelada"
+        FULFILLED = "ATENDIDA", "atendida"
+
+    status = models.CharField(
+        "situação",
+        max_length=20,
+        choices=Status.choices,
+        default=Status.CONFIRMED,
+        editable=False
+    )
+
+    notes = models.TextField("Observações", blank=True)
+
     class Meta:
         verbose_name = "Reserva"
         verbose_name_plural = "Reservas"
