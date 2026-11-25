@@ -27,4 +27,31 @@
         <a class="text-link self-center" href="{% url 'cnhs:list_cnhs' %}">Cancelar</a>
     </form>
 </div>
+<script>
+    const expiryField = document.getElementById("{{ form.expiration_date.id_for_label }}");
+    expiryField.inputMode = "numeric";
+
+    function formatExpiry(value) {
+        const brazilianDate = value.replace(/^(\d{4})-(\d{2})-(\d{2})$/, "$3/$2/$1");
+        const digits = brazilianDate.replace(/\D/g, "").slice(0, 8);
+
+        return [digits.slice(0, 2), digits.slice(2, 4), digits.slice(4)]
+            .filter(Boolean)
+            .join("/");
+    }
+
+    expiryField.addEventListener("input", (event) => {
+        const value = expiryField.value;
+        const formatted = formatExpiry(value);
+        if (value === formatted) return;
+
+        let cursor = formatExpiry(value.slice(0, expiryField.selectionStart)).length;
+        if (event.inputType === "deleteContentForward" && formatted[cursor] === "/") {
+            cursor += 1;
+        }
+
+        expiryField.value = formatted;
+        expiryField.setSelectionRange(cursor, cursor);
+    });
+</script>
 {% endblock %}
