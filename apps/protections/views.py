@@ -58,6 +58,6 @@ def delete_protection(request: HttpRequest, id: int) -> HttpResponse:
 
     return render(
         request,
-        "protections/delete_protection.html",
+        "protections/delete_protections.html",
         {"protection": protection, "error": error},
     )
