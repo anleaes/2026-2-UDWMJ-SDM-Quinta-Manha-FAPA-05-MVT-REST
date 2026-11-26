@@ -53,9 +53,9 @@ class Reservation(models.Model):
 
     notes = models.TextField("Observações", blank=True)
 
-    contracted_daily_rate = models.DecimalField("Diária contratada", max_digits=10, decimal_places=2, default=0, editable=False)
-    contracted_protection_rate = models.DecimalField("Proteção contratada", max_digits=10, decimal_places=2, default=0, editable=False)
-    contracted_deductible = models.DecimalField("Franquia contratada", max_digits=10, decimal_places=2, default=0, editable=False)
+    contracted_daily_rate = models.DecimalField("Diária contratada", max_digits=10, decimal_places=2, default=0, editable=False, db_column="daily_rate")
+    contracted_protection_rate = models.DecimalField("Proteção contratada", max_digits=10, decimal_places=2, default=0, editable=False, db_column="protection_rate")
+    contracted_deductible = models.DecimalField("Franquia contratada", max_digits=10, decimal_places=2, default=0, editable=False, db_column="deductible_amount")
     estimated_total = models.DecimalField("Total estimado", max_digits=10, decimal_places=2, default=0, editable=False)
 
     class Meta:
@@ -105,4 +105,3 @@ class Reservation(models.Model):
             days += 1
         self.estimated_total = days * (self.contracted_daily_rate + self.contracted_protection_rate)
 
-        
