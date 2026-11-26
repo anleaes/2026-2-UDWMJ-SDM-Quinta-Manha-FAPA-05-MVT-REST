@@ -132,3 +132,10 @@ def add_reservation(request):
         return _save_reservation(request)
 
     return pages.add(request)
+
+@login_required
+def list_reservations(request):
+    return pages.list(
+        request,
+        related_fields=["client", "vehicle__vehicle_model", "employee", "protection"],
+    )
