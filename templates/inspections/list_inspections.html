@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load links %}
+
+{% block title %}
+Locações - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+
+<div class="section">
+    <h1>Locações</h1>
+    <a href="{% url "inspections:add_inspection" %}" class="button">Nova Locação</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Retirada</th>
+                <th>Devolução</th>
+                <th>Combustível</th>
+                <th>Avarias</th>
+                <!-- NOTE: This should be in another page -->
+                <th>Justificativas</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Contrato</th>
+                <th>Aberto Por</th>
+                <th>Encerrado Por</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in inspections %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.pickup_date|date:"SHORT_DATE_FORMAT" }}</td>
+                <td>{{ i.return_date|date:"SHORT_DATE_FORMAT" }}</td>
+                <td>{{ i.gas_fee }}</td>
+                <td>{{ i.damage_fee }}</td>
+                <td>{{ i.fees_justification }}</td>
+                <td>{{ i.final_cost }}</td>
+                <td>{{ i.status }}</td>
+                <td>{% file_link i.contract %}</td>
+                <td>{{ i.opened_by }}</td>
+                <td>{{ i.closed_by }}</td>
+                <td><a href="{% url "inspections:edit_inspection" i.id %}" class="text-link">Editar</a></td>
+                <td><a href="{% url "inspections:delete_inspection" i.id %}" class="text-link">Excluir</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock body %}
