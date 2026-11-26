@@ -139,3 +139,19 @@ def list_reservations(request):
         request,
         related_fields=["client", "vehicle__vehicle_model", "employee", "protection"],
     )
+
+@login_required
+def edit_reservation(request, id):
+    reservation = get_object_or_404(Reservation, pk=id)
+
+    if reservation.status != Reservation.Status.CONFIRMED:
+        return redirect(pages.templates.url)
+
+    if request.method == "POST":
+        return _save_reservation(request, instance=reservation)
+
+    return render(
+        request,
+        pages.templates.add,
+        {"form": ReservationForm(instance=reservation)},
+    )
