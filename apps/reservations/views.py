@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from datetime import timedelta
 from django.apps import apps
 from django.core.exceptions import ValidationError
@@ -6,15 +6,19 @@ from django.db.models import Q
 from django.utils import timezone
 from django.db.models.functions import Coalesce
 from django.db import transaction
+from django.contrib.auth.decorators import login_required
 
 from maintenance.models import Maintenance
 from .models import Reservation
 from cnhs.models import CNH
 from vehicles.models import Vehicle
+from core.forms import Forms
+from .forms import ReservationForm
 
 # Create your views here.
 
 CAR_LICENSES = ("A", "B", "AB", "C", "D", "E")
+pages = Forms(Reservation, ReservationForm, "reservations", "reservation")
 
 def check_schedule(reservation):
     start = reservation.expected_pickup
@@ -108,3 +112,23 @@ def cancel_booking(reservation):
         if reservation.status != Reservation.Status.CONFIRMED:
             raise ValidationError("A reserva não pode ser cancelada, pois não está no status 'CONFIRMADA'.")
  
+def _save_reservation(request, instance=None):
+    form = ReservationForm(request.POST, instance=instance)
+
+    if form.is_valid():
+        try:
+            confirm_reservation(form.save(commit=False))
+        except ValidationError as error:
+            form.add_error(None, error.messages)
+        else:
+            return redirect(pages.templates.url)
+
+    return render(request, pages.templates.add, {"form": form})
+
+
+@login_required
+def add_reservation(request):
+    if request.method == "POST":
+        return _save_reservation(request)
+
+    return pages.add(request)
