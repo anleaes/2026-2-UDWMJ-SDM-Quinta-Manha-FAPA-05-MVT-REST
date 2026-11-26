@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Cancelar reserva - {{ block.super }}{% endblock %}
+
+{% block body %}
+<div class="section">
+    <h1>Cancelar reserva #{{ reservation.pk }}</h1>
+
+    <p>{{ reservation.client }} · {{ reservation.vehicle }}</p>
+    <p>
+        {{ reservation.expected_pickup|date:"d/m/Y H:i" }}
+        até {{ reservation.expected_return|date:"d/m/Y H:i" }}
+    </p>
+
+    {% if error %}
+        <p role="alert">{{ error }}</p>
+    {% endif %}
+
+    {% if reservation.status == "CONFIRMADA" %}
+        <form method="post">
+            {% csrf_token %}
+            <button class="button" type="submit">Confirmar cancelamento</button>
+        </form>
+    {% else %}
+        <p>Situação atual: {{ reservation.get_status_display }}</p>
+    {% endif %}
+
+    <a class="text-link" href="{% url 'reservations:list_reservations' %}">Voltar</a>
+</div>
+{% endblock %}
