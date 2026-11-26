@@ -155,3 +155,22 @@ def edit_reservation(request, id):
         pages.templates.add,
         {"form": ReservationForm(instance=reservation)},
     )
+
+@login_required
+def cancel_reservation(request, id):
+    reservation = get_object_or_404(Reservation, pk=id)
+    error = None
+
+    if request.method == "POST":
+        try:
+            cancel_booking(reservation)
+        except ValidationError as exc:
+            error = exc.messages[0]
+        else:
+            return redirect(pages.templates.url)
+
+    return render(
+        request,
+        "reservations/cancel_reservation.html",
+        {"reservation": reservation, "error": error},
+    )
