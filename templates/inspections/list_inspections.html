@@ -23,7 +23,8 @@ Locações - {{ block.super }}
                 <th>Valor</th>
                 <th>Status</th>
                 <th>Contrato</th>
-                <th>Responsável</th>
+                <th>Aberto Por</th>
+                <th>Encerrado Por</th>
             </tr>
         </thead>
         <tbody>
@@ -38,7 +39,8 @@ Locações - {{ block.super }}
                 <td>{{ i.final_cost }}</td>
                 <td>{{ i.status }}</td>
                 <td>{% file_link i.contract %}</td>
-                <td>{{ i.employee.name }}</td>
+                <td>{{ i.opened_by }}</td>
+                <td>{{ i.closed_by }}</td>
                 <td><a href="{% url "inspections:edit_inspection" i.id %}" class="text-link">Editar</a></td>
                 <td><a href="{% url "inspections:delete_inspection" i.id %}" class="text-link">Excluir</a></td>
             </tr>

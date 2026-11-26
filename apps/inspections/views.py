@@ -25,8 +25,7 @@ def add_inspection(request: HttpRequest) -> HttpResponse:
 @login_required
 def list_inspections(request: HttpRequest) -> HttpResponse:
     template_name = "inspections/list_inspections.html"
-    inspections   = Inspection.objects.select_related("employee").all()
-    # inspections   = Inspection.objects.select_related("reservation", "employee").all()
+    inspections   = Inspection.objects.select_related("reservation", "opened_by", "closed_by").all()
     context = {
         "inspections" : inspections,
     }
