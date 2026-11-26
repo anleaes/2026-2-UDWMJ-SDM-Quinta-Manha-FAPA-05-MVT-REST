@@ -26,7 +26,7 @@ urlpatterns = [
     path("funcionarios/", include("employees.urls", namespace = "employees")),
     path("api/funcionarios/", include("employees.api.urls", namespace = "api_employees")),
 
-    path("manutencoes/", include("maintenance.urls", namespace = "maintenance")),
+    path("locacoes/", include("inspections.urls", namespace = "inspections")),
 
     path("contas/", include("accounts.urls", namespace = "accounts")),
 
@@ -45,6 +45,8 @@ urlpatterns = [
     path("cnhs/", include("cnhs.urls", namespace="cnhs")),
 
     path("reservas/", include("reservations.urls", namespace="reservations")),
+
+    path("manutencoes/", include("maintenance.urls", namespace = "maintenance")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
