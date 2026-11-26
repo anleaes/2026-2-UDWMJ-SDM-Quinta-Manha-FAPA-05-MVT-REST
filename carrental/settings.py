@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "maintenance.apps.MaintenanceConfig",
     "cnhs.apps.CnhsConfig",
     "reservations.apps.ReservationsConfig",
+    "inspections.apps.InspectionsConfig",
 ]
 
 MIDDLEWARE = [
