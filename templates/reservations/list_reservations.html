@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Reservas - {{ block.super }}{% endblock %}
+
+{% block body %}
+<div class="section">
+    <h1>Reservas</h1>
+    <a class="button" href="{% url 'reservations:add_reservation' %}">Nova reserva</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Reserva</th>
+                <th>Cliente e veículo</th>
+                <th>Período</th>
+                <th>Valores contratados</th>
+                <th>Situação</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in reservations %}
+                <tr>
+                    <td>
+                        #{{ r.pk }}<br>
+                        {{ r.employee }}<br>
+                        {{ r.created_at|date:"d/m/Y H:i" }}
+                    </td>
+                    <td>{{ r.client }}<br>{{ r.vehicle }}</td>
+                    <td>
+                        {{ r.expected_pickup|date:"d/m/Y H:i" }}<br>
+                        {{ r.expected_return|date:"d/m/Y H:i" }}
+                    </td>
+                    <td>
+                        Diária R$ {{ r.contracted_daily_rate|floatformat:2 }}<br>
+                        {{ r.protection|default:"Sem proteção" }} · R$ {{ r.contracted_protection_rate|floatformat:2 }}/dia<br>
+                        Franquia R$ {{ r.contracted_deductible|floatformat:2 }}<br>
+                        <strong>Total R$ {{ r.estimated_total|floatformat:2 }}</strong>
+                    </td>
+                    <td>{{ r.get_status_display }}<br>{{ r.notes|default:"" }}</td>
+                    <td>
+                        {% if r.status == "CONFIRMADA" %}
+                            <a class="text-link" href="{% url 'reservations:edit_reservation' r.pk %}">Editar</a>
+                            <a class="text-link" href="{% url 'reservations:cancel_reservation' r.pk %}">Cancelar</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="6">Nenhuma reserva cadastrada.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="text-link" href="{% url 'core:home' %}">Início</a>
+</div>
+{% endblock %}
