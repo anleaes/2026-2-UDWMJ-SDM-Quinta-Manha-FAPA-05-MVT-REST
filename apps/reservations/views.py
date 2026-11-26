@@ -5,11 +5,16 @@ from django.core.exceptions import ValidationError
 from django.db.models import Q
 from django.utils import timezone
 from django.db.models.functions import Coalesce
+from django.db import transaction
 
 from maintenance.models import Maintenance
 from .models import Reservation
+from cnhs.models import CNH
+from vehicles.models import Vehicle
 
 # Create your views here.
+
+CAR_LICENSES = ("A", "B", "AB", "C", "D", "E")
 
 def check_schedule(reservation):
     start = reservation.expected_pickup
@@ -54,3 +59,52 @@ def check_schedule(reservation):
             reservation__expected_return__gt=start,
         ).exists():
             raise ValidationError("O veículo selecionado já está locado nesse período.")
+
+@transaction.atomic
+def confirm_reservation(reservation):
+    previous = None
+
+    if reservation.pk:
+        previous = Reservation.objects.select_for_update().get(pk=reservation.pk)
+        if previous.status != Reservation.Status.CONFIRMED:
+            raise ValidationError("A reserva não pode ser confirmada, pois não está no status 'CONFIRMADA'.")
+
+    reservation.vehicle = Vehicle.objects.select_for_update().get(pk=reservation.vehicle_id)
+    reservation.status = Reservation.Status.CONFIRMED
+    reservation.clean()
+
+    if not reservation.client.is_active or not reservation.vehicle.is_active:
+        raise ValidationError("Selecione um cliente e um veículo ativos para confirmar a reserva.")
+
+    if not reservation.employee.isactive:
+        raise ValidationError("O funcionário que está confirmando a reserva deve estar ativo.")
+
+    changed_protection = previous is None or previous.protection_id != reservation.protection_id
+
+    if reservation.protection_id and changed_protection and not reservation.protection.is_active:
+        raise ValidationError("A proteção selecionada não está ativa.")
+
+    if not CNH.allows_rental(
+        client=reservation.client,
+        accepted_categories=CAR_LICENSES,
+        return_date=timezone.localtime(reservation.expected_return)
+    ):
+
+        raise ValidationError("O cliente não possui CNH válida para o período da reserva.")
+
+    check_schedule(reservation)
+    reservation.update_prices(previous)
+    reservation.full_clean()
+    reservation.save()
+
+def cancel_booking(reservation):
+    updated = Reservation.objects.filter(
+        pk=reservation.pk,
+        status=Reservation.Status.CONFIRMED
+    ).update(status=Reservation.Status.CANCELLED)
+
+    if not updated:
+        reservation.refresh_from_db(fields=["status"])
+        if reservation.status != Reservation.Status.CONFIRMED:
+            raise ValidationError("A reserva não pode ser cancelada, pois não está no status 'CONFIRMADA'.")
+ 
